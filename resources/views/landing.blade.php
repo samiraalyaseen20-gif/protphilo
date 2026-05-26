@@ -659,42 +659,54 @@
             </div>
         </section>
 
-        <!-- Blog/Readings Section -->
+        <!-- Projects Section -->
         <section id="projects" class="py-32">
             <div class="max-w-7xl mx-auto px-6 space-y-16">
                 
                 <!-- Title -->
                 <div class="text-center space-y-2 reveal-init">
                     <h2 class="text-4xl lg:text-5xl font-black text-on-background font-display tracking-tight">
-                        موضوعات ومشاريع <br>
-                        من <span class="text-primary">سيرتي المهنية</span>
+                        أبرز المشاريع <br>
+                        من <span class="text-primary">أنظمتي البرمجية المنجزة</span>
                     </h2>
                 </div>
 
-                <!-- Blog grid -->
+                <!-- Projects grid -->
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-right">
                     
-                    <!-- Blog Card 1 -->
-                    <div class="mutmiz-card rounded-[2.5rem] overflow-hidden reveal-init flex flex-col justify-between h-[360px]">
-                        <div class="p-8 space-y-4">
-                            <span class="px-3.5 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold glow-purple">تصاميم كرافيك</span>
-                            <h3 class="text-2xl font-black text-on-background leading-snug">إدارة وتصميم الهويات البصرية والكتب الرسمية بمؤسسات كربلاء</h3>
+                    <!-- Project Card 1 -->
+                    <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
+                        <div class="relative overflow-hidden aspect-video bg-surface">
+                            <img src="{{ asset('assets/Screenshot 2026-05-26 080329.png') }}" alt="برنامج الإحصاء الطبي للعيون" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         </div>
-                        <div class="p-8 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
-                            <span>٢٠٢٢ - ٢٠٢٤ م</span>
-                            <span class="material-symbols-outlined text-primary font-bold">arrow_left_alt</span>
+                        <div class="p-8 space-y-4">
+                            <span class="inline-block px-3.5 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold glow-purple">أنظمة إحصائية طبية</span>
+                            <h3 class="text-2xl font-black text-on-background leading-snug">برنامج الإحصاء الطبي للعيون</h3>
+                            <p class="text-xs text-on-surface leading-relaxed">
+                                نظام إحصائي متكامل لمتابعة وتنظيم إحصاءات الحقن، الأطباء، المرضى، وجدولة وتنسيق مواعيد الزيارات بمركز السيدة زينب التخصصي للعيون بدقة عالية.
+                            </p>
+                        </div>
+                        <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
+                            <span>٢٠٢٥ م</span>
+                            <span class="flex items-center gap-1 font-bold text-primary">المشروع الأول <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
                         </div>
                     </div>
 
-                    <!-- Blog Card 2 -->
-                    <div class="mutmiz-card rounded-[2.5rem] overflow-hidden reveal-init flex flex-col justify-between h-[360px]">
-                        <div class="p-8 space-y-4">
-                            <span class="px-3.5 py-1.5 rounded-full bg-secondary/10 text-secondary text-xs font-bold glow-pink">أنظمة إحصائية طبية</span>
-                            <h3 class="text-2xl font-black text-on-background leading-snug">بناء وتطوير نظام إحصائي متكامل لأعداد المرضى والعمليات الجراحية</h3>
+                    <!-- Project Card 2 -->
+                    <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
+                        <div class="relative overflow-hidden aspect-video bg-surface">
+                            <img src="{{ asset('assets/Screenshot 2026-05-26 080212.png') }}" alt="نظام إدارة مخازن وصرف العدسات الطبية" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         </div>
-                        <div class="p-8 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
-                            <span>٢٠٢٤ - ٢٠٢٥ م</span>
-                            <span class="material-symbols-outlined text-secondary font-bold">arrow_left_alt</span>
+                        <div class="p-8 space-y-4">
+                            <span class="inline-block px-3.5 py-1.5 rounded-full bg-secondary/10 text-secondary text-xs font-bold glow-pink">إدارة مخازن وقواعد بيانات</span>
+                            <h3 class="text-2xl font-black text-on-background leading-snug">نظام إدارة مخازن وصرف العدسات الطبية</h3>
+                            <p class="text-xs text-on-surface leading-relaxed">
+                                نظام برمجائي محوسب للرقابة الذكية على مخزون المستلزمات الطبية وإصدار وتتبع العدسات المصروفة للمرضى بمركز العيون كربلاء.
+                            </p>
+                        </div>
+                        <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
+                            <span>٢٠٢٤ م</span>
+                            <span class="flex items-center gap-1 font-bold text-secondary">المشروع الثاني <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
                         </div>
                     </div>
 

@@ -50,30 +50,10 @@
 
     <!-- Navigation Bar -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Left links (RTL first) -->
-            <div class="hidden md:flex gap-8 text-sm font-bold text-on-surface">
-                <a href="#services" class="hover:text-primary transition-colors">الخدمات الإدارية</a>
-                <a href="#experience" class="hover:text-primary transition-colors">مسيرتي المهنية</a>
-                <a href="#about-us" class="hover:text-primary transition-colors">الشهادة الأكاديمية</a>
-            </div>
-            
-            <!-- Centered Logo -->
-            <div class="text-3xl font-black text-primary font-display tracking-tight flex items-center gap-1">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-center items-center">
+            <div class="text-2xl font-black text-primary font-display tracking-tight flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-secondary glow-pink"></span>
-                Mutmiz
-            </div>
-
-            <!-- Right links + Profile -->
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex gap-6 text-sm font-bold text-on-surface">
-                    <a href="#projects" class="hover:text-primary transition-colors">الأنظمة والمشاريع</a>
-                    <a href="#testimonials" class="hover:text-primary transition-colors">آراء الأطباء</a>
-                    <a href="#contact" class="hover:text-primary transition-colors">تواصل معي</a>
-                </div>
-                <button class="w-9 h-9 rounded-full border-2 border-secondary flex items-center justify-center text-secondary hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined text-sm font-bold">person</span>
-                </button>
+                سميرة علي ياسين
             </div>
         </div>
     </nav>

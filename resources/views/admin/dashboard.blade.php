@@ -15,8 +15,8 @@
     <style>
         body {
             font-family: 'Cairo', 'Outfit', sans-serif;
-            background-color: #fafafa; /* shadcn neutral bg */
-            color: #09090b; /* shadcn zinc-950 foreground */
+            background-color: #fafafa;
+            color: #09090b;
         }
     </style>
 </head>
@@ -60,10 +60,10 @@
                 
                 <form action="{{ route('admin.logout') }}" method="POST" class="w-full">
                     @csrf
-                    <button type="submit" class="w-full py-1.5 px-3 rounded-md border border-zinc-200 text-red-600 hover:bg-red-50 text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                    <x-ui.button type="submit" variant="outline" size="sm" class="w-full text-red-600 hover:bg-red-50 border-zinc-200">
                         <span class="material-symbols-outlined text-xs">logout</span>
                         <span>تسجيل خروج</span>
-                    </button>
+                    </x-ui.button>
                 </form>
             </div>
         </aside>
@@ -74,7 +74,7 @@
             <!-- Mobile Header / Top Nav -->
             <header class="h-14 border-b border-zinc-200 bg-white flex items-center justify-between px-6 sticky top-0 z-30">
                 <div class="flex items-center gap-3">
-                    <!-- Mobile Hamburger (Visual only) -->
+                    <!-- Mobile Hamburger -->
                     <button class="md:hidden p-1.5 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 rounded-md">
                         <span class="material-symbols-outlined text-base">menu</span>
                     </button>
@@ -110,11 +110,10 @@
                         <p class="text-xs text-zinc-500 mt-1">عرض، إضافة، وتعديل كافة المشاريع التقنية والأنظمة الطبية المعروضة في اللاندينج بيج</p>
                     </div>
 
-                    <button onclick="openAddModal()" 
-                        class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 h-9 px-4 py-2 cursor-pointer">
+                    <x-ui.button onclick="openAddModal()">
                         <span class="material-symbols-outlined text-sm font-bold">add</span>
                         إضافة مشروع
-                    </button>
+                    </x-ui.button>
                 </div>
 
                 <!-- Toast Notifications -->
@@ -142,39 +141,39 @@
                     </div>
                 @endif
 
-                <!-- KPI Metric Grid (shadcn Cards style) -->
+                <!-- KPI Metric Grid using Blade Component -->
                 <div class="grid sm:grid-cols-3 gap-4">
                     <!-- Metric 1 -->
-                    <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <x-ui.card class="p-6">
                         <div class="flex flex-row items-center justify-between space-y-0 pb-2">
                             <h3 class="text-xs font-medium tracking-tight text-zinc-500">إجمالي المشاريع</h3>
                             <span class="material-symbols-outlined text-sm text-zinc-400">inventory_2</span>
                         </div>
                         <div class="text-2xl font-bold tracking-tight text-zinc-950">{{ $projects->count() }}</div>
                         <p class="text-[10px] text-zinc-400 mt-1">مشاريع معروضة حالياً بالصفحة الرئيسية</p>
-                    </div>
+                    </x-ui.card>
                     <!-- Metric 2 -->
-                    <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <x-ui.card class="p-6">
                         <div class="flex flex-row items-center justify-between space-y-0 pb-2">
                             <h3 class="text-xs font-medium tracking-tight text-zinc-500">التصنيفات</h3>
                             <span class="material-symbols-outlined text-sm text-zinc-400">category</span>
                         </div>
                         <div class="text-2xl font-bold tracking-tight text-zinc-950">{{ $projects->pluck('category')->unique()->count() }}</div>
                         <p class="text-[10px] text-zinc-400 mt-1">أقسام الأنظمة وتطبيقات الأعمال</p>
-                    </div>
+                    </x-ui.card>
                     <!-- Metric 3 -->
-                    <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <x-ui.card class="p-6">
                         <div class="flex flex-row items-center justify-between space-y-0 pb-2">
                             <h3 class="text-xs font-medium tracking-tight text-zinc-500">حالة لوحة التحكم</h3>
                             <span class="material-symbols-outlined text-sm text-emerald-500 animate-pulse">circle</span>
                         </div>
                         <div class="text-2xl font-bold tracking-tight text-emerald-600">نشط</div>
                         <p class="text-[10px] text-zinc-400 mt-1">مزامنة تامة وتحديث فوري للمحتوى</p>
-                    </div>
+                    </x-ui.card>
                 </div>
 
-                <!-- Projects shadcn Table -->
-                <div class="rounded-xl border border-zinc-200 bg-white shadow-sm overflow-hidden">
+                <!-- Projects Table Container -->
+                <x-ui.card class="overflow-hidden">
                     <div class="p-6 border-b border-zinc-150">
                         <h3 class="text-xs font-bold text-zinc-900">سجل المشاريع المتاحة</h3>
                     </div>
@@ -184,13 +183,13 @@
                             <span class="material-symbols-outlined text-4xl text-zinc-300">folder_open</span>
                             <h3 class="text-sm font-semibold text-zinc-900">لا توجد مشاريع مضافة</h3>
                             <p class="text-xs text-zinc-400 max-w-sm mx-auto">لم تقم بإضافة أي مشاريع في قاعدة البيانات بعد. ابدأ بإضافة مشروعك الأول.</p>
-                            <button onclick="openAddModal()" class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-xs font-medium bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 h-8 px-4 cursor-pointer">
+                            <x-ui.button onclick="openAddModal()">
                                 <span class="material-symbols-outlined text-xs">add</span>
                                 إضافة مشروع
-                            </button>
+                            </x-ui.button>
                         </div>
                     @else
-                        <!-- Responsive wrapper -->
+                        <!-- Table -->
                         <div class="overflow-x-auto w-full">
                             <table class="w-full text-right text-xs">
                                 <thead class="bg-zinc-50/75 border-b border-zinc-200 text-zinc-500 font-semibold">
@@ -213,9 +212,9 @@
                                                 <div class="text-[10px] text-zinc-400 mt-0.5 line-clamp-1 max-w-xs">{{ $project->description }}</div>
                                             </td>
                                             <td class="p-4">
-                                                <span class="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[10px] font-medium text-zinc-600">
+                                                <x-ui.badge variant="secondary">
                                                     {{ $project->category }}
-                                                </span>
+                                                </x-ui.badge>
                                             </td>
                                             <td class="p-4 font-medium text-zinc-600">
                                                 {{ $project->year }}
@@ -223,23 +222,23 @@
                                             <td class="p-4 text-left">
                                                 <div class="inline-flex items-center gap-1">
                                                     <!-- Edit Icon Button -->
-                                                    <button onclick="openEditModal(this)"
+                                                    <x-ui.button onclick="openEditModal(this)"
                                                         data-id="{{ $project->id }}"
                                                         data-title="{{ $project->title }}"
                                                         data-category="{{ $project->category }}"
                                                         data-year="{{ $project->year }}"
                                                         data-description="{{ $project->description }}"
-                                                        class="inline-flex items-center justify-center rounded-md text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 w-8 h-8 border border-zinc-200 bg-white transition-colors cursor-pointer">
+                                                        variant="outline" size="icon" class="border-zinc-200 bg-white">
                                                         <span class="material-symbols-outlined text-sm">edit</span>
-                                                    </button>
+                                                    </x-ui.button>
 
                                                     <!-- Delete Icon Button -->
                                                     <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا المشروع نهائياً؟');">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="inline-flex items-center justify-center rounded-md text-red-500 hover:text-red-600 hover:bg-red-50 w-8 h-8 border border-zinc-200 bg-white transition-colors cursor-pointer">
+                                                        <x-ui.button type="submit" variant="outline" size="icon" class="border-zinc-200 bg-white text-red-500 hover:text-red-600 hover:bg-red-50">
                                                             <span class="material-symbols-outlined text-sm">delete</span>
-                                                        </button>
+                                                        </x-ui.button>
                                                     </form>
                                                 </div>
                                             </td>
@@ -249,86 +248,64 @@
                             </table>
                         </div>
                     @endif
-                </div>
+                </x-ui.card>
 
             </main>
         </div>
 
     </div>
 
-    <!-- Modal Form (shadcn Dialog style) -->
-    <div id="projectModal" class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-zinc-950/40 backdrop-blur-sm hidden">
+    <!-- Modal Form (shadcn Dialog Blade Component) -->
+    <x-ui.dialog id="projectModal" title="إضافة مشروع" description="قم بتعبئة بيانات المشروع بالأسفل. الحقول المؤشرة مطلوبة.">
         
-        <!-- Dialog Content -->
-        <div class="bg-white rounded-lg border border-zinc-200 max-w-lg w-full p-6 shadow-lg relative animate-fade-in text-right">
-            
-            <!-- Close Button -->
-            <button onclick="closeModal()" class="absolute top-4 left-4 text-zinc-400 hover:text-zinc-900 rounded-md p-1 hover:bg-zinc-100 transition-colors cursor-pointer">
-                <span class="material-symbols-outlined text-sm">close</span>
-            </button>
+        <form id="projectForm" action="" method="POST" enctype="multipart/form-data" class="space-y-4">
+            @csrf
+            <div id="methodOverride"></div>
 
-            <!-- Dialog Header -->
-            <div class="mb-4 space-y-1.5">
-                <h2 id="modalTitle" class="text-lg font-semibold tracking-tight text-zinc-950">إضافة مشروع</h2>
-                <p class="text-xs text-zinc-500">قم بتعبئة بيانات المشروع بالأسفل. الحقول المؤشرة مطلوبة.</p>
+            <!-- Title -->
+            <div class="space-y-1">
+                <label for="form_title" class="text-xs font-medium text-zinc-700">عنوان المشروع</label>
+                <x-ui.input type="text" id="form_title" name="title" required placeholder="مثال: برنامج الأرشفة الطبية" />
             </div>
 
-            <!-- Form -->
-            <form id="projectForm" action="" method="POST" enctype="multipart/form-data" class="space-y-4">
-                @csrf
-                <div id="methodOverride"></div>
-
-                <!-- Title -->
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Category -->
                 <div class="space-y-1">
-                    <label for="form_title" class="text-xs font-medium text-zinc-700">عنوان المشروع</label>
-                    <input type="text" id="form_title" name="title" required placeholder="مثال: برنامج الأرشفة الطبية"
-                        class="flex h-9 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-xs shadow-sm transition-colors placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950">
+                    <label for="form_category" class="text-xs font-medium text-zinc-700">التصنيف</label>
+                    <x-ui.input type="text" id="form_category" name="category" required placeholder="مثال: أنظمة إحصائية طبية" />
                 </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <!-- Category -->
-                    <div class="space-y-1">
-                        <label for="form_category" class="text-xs font-medium text-zinc-700">التصنيف</label>
-                        <input type="text" id="form_category" name="category" required placeholder="مثال: أنظمة إحصائية طبية"
-                            class="flex h-9 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-xs shadow-sm transition-colors placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950">
-                    </div>
-                    <!-- Year -->
-                    <div class="space-y-1">
-                        <label for="form_year" class="text-xs font-medium text-zinc-700">سنة الإنجاز</label>
-                        <input type="text" id="form_year" name="year" required placeholder="مثال: ٢٠٢٥ م"
-                            class="flex h-9 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-xs shadow-sm transition-colors placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950">
-                    </div>
-                </div>
-
-                <!-- Image -->
+                <!-- Year -->
                 <div class="space-y-1">
-                    <label for="form_image" class="text-xs font-medium text-zinc-700">صورة المشروع</label>
-                    <input type="file" id="form_image" name="image" accept="image/*"
-                        class="flex w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-xs shadow-sm file:border-0 file:bg-zinc-100 file:text-zinc-900 file:rounded file:px-2 file:py-0.5 file:mr-2 file:text-[10px] file:font-semibold">
-                    <p id="imageNote" class="text-[10px] text-zinc-400 mt-1 hidden">اتركه فارغاً للاحتفاظ بالصورة الحالية في حال لم ترغب بتغييرها.</p>
+                    <label for="form_year" class="text-xs font-medium text-zinc-700">سنة الإنجاز</label>
+                    <x-ui.input type="text" id="form_year" name="year" required placeholder="مثال: ٢٠٢٥ م" />
                 </div>
+            </div>
 
-                <!-- Description -->
-                <div class="space-y-1">
-                    <label for="form_description" class="text-xs font-medium text-zinc-700">تفاصيل ووصف المشروع</label>
-                    <textarea id="form_description" name="description" rows="4" required placeholder="اكتب تفاصيل ووصف هذا المشروع..."
-                        class="flex w-full rounded-md border border-zinc-200 bg-transparent px-3 py-2 text-xs shadow-sm placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 resize-none"></textarea>
-                </div>
+            <!-- Image -->
+            <div class="space-y-1">
+                <label for="form_image" class="text-xs font-medium text-zinc-700">صورة المشروع</label>
+                <x-ui.input type="file" id="form_image" name="image" accept="image/*" />
+                <p id="imageNote" class="text-[10px] text-zinc-400 mt-1 hidden font-sans">اتركه فارغاً للاحتفاظ بالصورة الحالية في حال لم ترغب بتغييرها.</p>
+            </div>
 
-                <!-- Action Footer -->
-                <div class="flex justify-end gap-2 pt-4 border-t border-zinc-150">
-                    <button type="button" onclick="closeModal()" 
-                        class="inline-flex items-center justify-center rounded-md text-xs font-medium transition-colors border border-zinc-200 bg-white hover:bg-zinc-100 h-9 px-4 cursor-pointer">
-                        إلغاء
-                    </button>
-                    <button type="submit" 
-                        class="inline-flex items-center justify-center rounded-md text-xs font-medium transition-colors bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 h-9 px-4 cursor-pointer">
-                        حفظ التغييرات
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+            <!-- Description -->
+            <div class="space-y-1">
+                <label for="form_description" class="text-xs font-medium text-zinc-700">تفاصيل ووصف المشروع</label>
+                <x-ui.textarea id="form_description" name="description" rows="4" required placeholder="اكتب تفاصيل ووصف هذا المشروع..." class="resize-none" />
+            </div>
+
+            <!-- Action Footer -->
+            <div class="flex justify-end gap-2 pt-4 border-t border-zinc-150">
+                <x-ui.button type="button" onclick="closeModal()" variant="outline">
+                    إلغاء
+                </x-ui.button>
+                <x-ui.button type="submit">
+                    حفظ التغييرات
+                </x-ui.button>
+            </div>
+        </form>
+
+    </x-ui.dialog>
 
     <!-- Javascript Modal Handlers -->
     <script>
@@ -350,7 +327,7 @@
             imageInput.value = '';
             imageInput.required = true;
 
-            modalTitle.innerText = "إضافة مشروع جديد";
+            if(modalTitle) modalTitle.innerText = "إضافة مشروع جديد";
             imageNote.classList.add('hidden');
 
             modal.classList.remove('hidden');
@@ -373,7 +350,7 @@
             imageInput.value = '';
             imageInput.required = false;
 
-            modalTitle.innerText = "تعديل المشروع";
+            if(modalTitle) modalTitle.innerText = "تعديل المشروع";
             imageNote.classList.remove('hidden');
 
             modal.classList.remove('hidden');

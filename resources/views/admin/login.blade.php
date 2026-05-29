@@ -14,8 +14,8 @@
     <style>
         body {
             font-family: 'Cairo', 'Outfit', sans-serif;
-            background-color: #fafafa; /* shadcn neutral bg */
-            color: #09090b; /* shadcn zinc-950 foreground */
+            background-color: #fafafa;
+            color: #09090b;
         }
     </style>
 </head>
@@ -31,13 +31,13 @@
             </a>
         </div>
 
-        <!-- shadcn Card -->
-        <div class="bg-white rounded-xl border border-zinc-200 shadow-sm p-8 space-y-6">
+        <!-- shadcn Card using Blade Components -->
+        <x-ui.card class="p-8 space-y-6">
             
             <!-- Card Header -->
             <div class="space-y-1.5 text-right">
-                <h1 class="text-2xl font-semibold tracking-tight text-zinc-950">تسجيل الدخول</h1>
-                <p class="text-xs text-zinc-500">أدخل بريدك الإلكتروني وكلمة المرور للوصول إلى لوحة التحكم</p>
+                <x-ui.card-title class="text-2xl font-semibold tracking-tight text-zinc-950">تسجيل الدخول</x-ui.card-title>
+                <x-ui.card-description class="text-xs text-zinc-500">أدخل بريدك الإلكتروني وكلمة المرور للوصول إلى لوحة التحكم</x-ui.card-description>
             </div>
 
             <!-- Validation Errors -->
@@ -59,19 +59,15 @@
                 <!-- Email -->
                 <div class="space-y-1.5">
                     <label for="email" class="text-xs font-medium text-zinc-700">البريد الإلكتروني</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus
-                        placeholder="name@example.com"
-                        class="flex h-9 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-xs shadow-sm transition-colors file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:cursor-not-allowed disabled:opacity-50 font-sans">
+                    <x-ui.input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus
+                        placeholder="name@example.com" class="font-sans" />
                 </div>
 
                 <!-- Password -->
                 <div class="space-y-1.5">
-                    <div class="flex items-center justify-between">
-                        <label for="password" class="text-xs font-medium text-zinc-700">كلمة المرور</label>
-                    </div>
-                    <input type="password" id="password" name="password" required
-                        placeholder="••••••••"
-                        class="flex h-9 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-xs shadow-sm transition-colors file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:cursor-not-allowed disabled:opacity-50 font-sans">
+                    <label for="password" class="text-xs font-medium text-zinc-700">كلمة المرور</label>
+                    <x-ui.input type="password" id="password" name="password" required
+                        placeholder="••••••••" class="font-sans" />
                 </div>
 
                 <!-- Remember Me -->
@@ -81,13 +77,12 @@
                     <label for="remember" class="text-xs font-medium text-zinc-500 select-none cursor-pointer">تذكرني على هذا الجهاز</label>
                 </div>
 
-                <!-- Submit Button (shadcn primary button style) -->
-                <button type="submit" 
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/90 h-9 w-full cursor-pointer mt-2">
+                <!-- Submit Button -->
+                <x-ui.button type="submit" class="w-full mt-2">
                     دخول
-                </button>
+                </x-ui.button>
             </form>
-        </div>
+        </x-ui.card>
 
     </div>
 

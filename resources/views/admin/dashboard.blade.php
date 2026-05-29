@@ -20,12 +20,16 @@
             left: auto;
             border-left: 1px solid #e5e7eb;
             border-right: none;
+            transform: translateX(100%); /* hidden by default (mobile) */
+            transition: transform 0.3s ease;
         }
 
-        /* Fix sidebar hidden/show for RTL */
-        #logo-sidebar.translate-x-full { transform: translateX(100%); }
-        #logo-sidebar.-translate-x-full { transform: translateX(100%); }
-        #logo-sidebar.translate-x-0   { transform: translateX(0); }
+        /* Show sidebar on desktop (640px+) */
+        @media (min-width: 640px) {
+            #logo-sidebar {
+                transform: translateX(0) !important;
+            }
+        }
 
         /* Fix main content margin for RTL */
         @media (min-width: 640px) {

@@ -228,209 +228,6 @@
                     </div>
                 </div>
 
-                <!-- Violet bottom wave panel -->
-                <div class="hero-bottom-block p-10 md:p-12 shadow-2xl reveal-init">
-                    <div class="grid md:grid-cols-3 gap-8 items-center text-right">
-                        
-                        <!-- Column 1: Custom Workflow -->
-                        <div class="hero-bottom-block-inner space-y-3 pl-6">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-white text-3xl font-bold bg-white/10 p-2 rounded-xl">checklist</span>
-                                <h3 class="text-lg font-bold">تطوير الأنظمة الإدارية</h3>
-                            </div>
-                            <p class="text-xs text-white/70 leading-relaxed">تصميم وبرمجة أنظمة متكاملة ومحوسبة لإدارة العيادات الطبية وحجوزات المرضى باستخدام لغات البرمجة (C#, HTML, CSS) وتقنيات الذكاء الاصطناعي.</p>
-                        </div>
-
-                        <!-- Column 2: Multi-team projects -->
-                        <div class="hero-bottom-block-inner space-y-3 pl-6">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-white text-3xl font-bold bg-white/10 p-2 rounded-xl">analytics</span>
-                                <h3 class="text-lg font-bold">أرشفة وإحصاء طبي</h3>
-                            </div>
-                            <p class="text-xs text-white/70 leading-relaxed">إعداد تقارير إحصائية دورية ومؤشرات قياس الأداء للأطباء وعمليات المختبر الجراحية لتوفير قاعدة بيانات آمنة لدعم اتخاذ القرار.</p>
-                        </div>
-
-                        <!-- Column 3: Stats downloads -->
-                        <div class="flex flex-col items-center md:items-start space-y-3 pr-6">
-                            <div class="avatar-stack">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100" alt="avatar">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100" alt="avatar">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100" alt="avatar">
-                            </div>
-                            <div class="text-sm font-bold text-white text-center md:text-right">تنظيم حجوزات وإحصاء لأكثر من <br><span class="text-secondary font-black">٥٠ ألف مريض بكربلاء 🏆</span></div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Stats & Checklist features Section -->
-        <section class="py-32 relative bg-surface/50 text-right">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-                
-                <!-- Right column: Checklist & stats visualization -->
-                <div class="grid grid-cols-2 gap-6 relative reveal-init">
-                    <!-- Widget 1: Checklist -->
-                    <div class="mutmiz-card p-6 rounded-3xl space-y-4">
-                        <div class="flex justify-between items-center border-b border-primary/5 pb-2">
-                            <span class="text-xs font-black">قائمة المتابعة</span>
-                            <span class="text-[9px] text-primary font-bold">+ إضافة</span>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                <span class="text-[10px] text-on-surface">أتمتة نظام حقن العين للمرضى بالكامل</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                <span class="text-[10px] text-on-surface">تطوير برنامج إدارة المخزن وصرف العدسات</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                <span class="text-[10px] text-on-surface">تحديث برنامج إدارة المختبر وتوثيق البيانات</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                <span class="text-[10px] text-on-surface">متابعة برنامج إدارة حجوزات المرضى</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                <span class="text-[10px] text-on-surface">استخراج التقارير الإحصائية وأرشفة البيانات</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Widget 2: Bar Chart -->
-                    <div class="mutmiz-card p-6 rounded-3xl flex flex-col justify-between">
-                        <span class="text-xs font-black">حجم العمل الأسبوعي</span>
-                        <div class="flex items-end justify-between h-24 pt-4">
-                            <div class="w-2.5 bg-primary/20 h-12 rounded-full overflow-hidden"><div class="bg-primary w-full h-[60%] rounded-full"></div></div>
-                            <div class="w-2.5 bg-primary/20 h-16 rounded-full overflow-hidden"><div class="bg-secondary w-full h-[80%] rounded-full"></div></div>
-                            <div class="w-2.5 bg-primary/20 h-8 rounded-full overflow-hidden"><div class="bg-primary w-full h-[40%] rounded-full"></div></div>
-                            <div class="w-2.5 bg-primary/20 h-20 rounded-full overflow-hidden"><div class="bg-secondary w-full h-[95%] rounded-full"></div></div>
-                            <div class="w-2.5 bg-primary/20 h-14 rounded-full overflow-hidden"><div class="bg-primary w-full h-[70%] rounded-full"></div></div>
-                        </div>
-                    </div>
-
-                    <!-- Widget 3: Overlay avatar stack bottom -->
-                    <div class="col-span-2 mutmiz-card p-4 rounded-2xl flex items-center justify-between">
-                        <div class="avatar-stack">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100" alt="avatar">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100" alt="avatar">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100" alt="avatar">
-                        </div>
-                        <span class="text-xs font-black text-primary">تنظيم ملفات المرضى إلكترونياً</span>
-                    </div>
-                </div>
-
-                <!-- Left column: Numerical Stats & Feature List -->
-                <div class="space-y-12 reveal-init">
-                    
-                    <!-- Stats count row -->
-                    <div class="grid grid-cols-2 gap-8 border-b border-primary/10 pb-8">
-                        <div>
-                            <div class="text-5xl font-black text-primary mb-1">٥٠ ألف+</div>
-                            <div class="text-xs text-on-surface">مرضى مسجلين بالنظام</div>
-                        </div>
-                        <div>
-                            <div class="text-5xl font-black text-[#ff4d80] mb-1">١,٢٠٠+</div>
-                            <div class="text-xs text-on-surface">إجمالي العمليات الجراحية المؤرشفة</div>
-                        </div>
-                    </div>
-
-                    <!-- Feature details -->
-                    <div class="space-y-8">
-                        
-                        <!-- Feature 1 -->
-                        <div class="flex gap-4">
-                            <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold mt-1">✔</span>
-                            <div>
-                                <h3 class="text-lg font-bold text-on-background mb-1">تنظيم حجوزات وحدة حقن العين</h3>
-                                <p class="text-xs text-on-surface leading-relaxed">إدارة الحجوزات، مواعيد حقن العين لمرضى العيون، واستكمال استمارات اللجنة الطبية بمركز السيدة زينب التخصصي للعيون.</p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 2 -->
-                        <div class="flex gap-4">
-                            <span class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center text-secondary text-xs font-bold mt-1">✔</span>
-                            <div>
-                                <h3 class="text-lg font-bold text-on-background mb-1">إدارة مخازن وصرف العدسات الطبية</h3>
-                                <p class="text-xs text-on-surface leading-relaxed">إنشاء نظام محوسب للرقابة على المخزون وإصدار وصرف العدسات الطبية للمرضى بدقة عالية وسرعة فائقة.</p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 3 -->
-                        <div class="flex gap-4">
-                            <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold mt-1">✔</span>
-                            <div>
-                                <h3 class="text-lg font-bold text-on-background mb-1">إعداد مؤشرات أداء الكادر الطبي</h3>
-                                <p class="text-xs text-on-surface leading-relaxed">تطوير نظام إحصائي متكامل لتسجيل نوع العمليات، والقطاع، وتفاصيل الأداء الجراحي الخاص بكل طبيب بالمستشفى.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Feature List with details section -->
-        <section class="py-32 relative text-right">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-                
-                <!-- Left column: list of features -->
-                <div class="space-y-12 reveal-init">
-                    <h2 class="text-4xl lg:text-5xl font-black text-on-background font-display leading-tight">
-                        مجموعة حلول ذكية <span class="text-primary">شاملة</span> <br>
-                        لأتمتة وإحصاء العمليات والعيادات
-                    </h2>
-                    
-                    <div class="space-y-8">
-                        <div class="flex gap-4 items-start">
-                            <span class="material-symbols-outlined text-primary bg-primary/10 p-2.5 rounded-2xl">sync</span>
-                            <div>
-                                <h3 class="text-lg font-bold">أنظمة إحصائية متطورة للمختبر</h3>
-                                <p class="text-xs text-on-surface">تصميم وتطوير نظام إحصائي خاص بالمختبرات الطبية، يسجل أعداد المراجعين وأنواع التحاليل المنجزة لدعم الإدارة.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-start">
-                            <span class="material-symbols-outlined text-secondary bg-secondary/10 p-2.5 rounded-2xl">attach_file</span>
-                            <div>
-                                <h3 class="text-lg font-bold">تنظيم المخاطبات والكتب الرسمية</h3>
-                                <p class="text-xs text-on-surface">إعداد وصياغة الكتب الرسمية والموافقات والاعتذارات الخاصة بتجهيز الأجهزة الطبية والمطابقة للأنظمة المعتمدة بدائرة الصحة.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right column: Re-arranged Grid layout for Task Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch reveal-init">
-                    
-                    <!-- Card 1: Create Task -->
-                    <div class="glass-panel glowing-card p-6 rounded-2xl shadow-xl border border-primary/10 flex flex-col justify-between">
-                        <div class="flex justify-between items-center text-[10px] text-on-surface mb-2">
-                            <span class="font-bold">تقرير إحصائي</span>
-                            <span class="text-primary">مركز العيون</span>
-                        </div>
-                        <div class="text-xs font-black mb-1">التقرير السنوي لعام ٢٠٢٥</div>
-                        <div class="text-[9px] text-on-surface">أتمتة كاملة للبيانات</div>
-                    </div>
-
-                    <!-- Card 2: Project Overview -->
-                    <div class="glass-panel glowing-card p-6 rounded-2xl shadow-xl border border-primary/10 bg-white">
-                        <div class="text-xs font-black text-on-background mb-2">أرشفة العمليات الجراحية</div>
-                        <p class="text-[10px] text-on-surface leading-relaxed">نظام لتسجيل نوع العملية الجراحية، القطاع، عدد العمليات لكل طبيب، وتفاصيل أداء الجراحين لدعم اتخاذ القرار.</p>
-                    </div>
-
-                    <!-- Card 3: Total Working Hours -->
-                    <div class="sm:col-span-2 glass-panel glowing-card px-6 py-4 rounded-2xl shadow-md border border-primary/10 flex items-center justify-between">
-                        <div class="text-xs font-black text-primary">ساعات أتمتة الأنظمة الطبية</div>
-                        <div class="text-sm font-bold text-on-background">64:52:00 <span class="text-[9px] text-[#ff4d80]">● أداء مستقر</span></div>
-                    </div>
-
-                </div>
 
             </div>
         </section>
@@ -514,7 +311,6 @@
                             <h3 class="text-lg font-black text-on-surface mb-2">مصممة كرافيك</h3>
                             <div class="text-xs text-secondary font-bold mb-3">العتبة الحسينية المقدسة - قسم رعاية الطفولة (مركز الحوراء زينب)</div>
                             <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
-                                <li>إدارة وتنفيذ التصاميم الرسمية للكتب والإصدارات الخاصة بالعتبة المقدسة.</li>
                                 <li>تطوير الهوية البصرية للبرامج والأنشطة الثقافية وتصميم منشورات وكتب الشهداء.</li>
                                 <li>إعداد وتجهيز المواد الدعائية والبصرية المطبوعة والرقمية للفعاليات والمهرجانات.</li>
                             </ul>
@@ -602,62 +398,7 @@
 
                 </div>
             </div>
-        </section>
-
-        <!-- Testimonial Section with Ratings -->
-        <section id="testimonials" class="py-32 bg-surface/30 text-right">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-                
-                <!-- Right column: ratings and profile widgets -->
-                <div class="flex flex-col items-center gap-6 reveal-init">
-                    
-                    <!-- Executive card -->
-                    <div class="mutmiz-card p-6 rounded-3xl flex items-center gap-4 w-72">
-                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-xl">مركز</div>
-                        <div>
-                            <div class="flex items-center gap-1 bg-[#f1f0ff] px-2 py-0.5 rounded-full border border-primary/10 text-[9px] font-bold text-primary w-fit mb-1">
-                                <span class="material-symbols-outlined text-[9px] font-black">star_rate</span> أداء ممتاز
-                            </div>
-                            <h4 class="font-bold text-xs text-on-background">مركز السيدة زينب (ع) للعيون</h4>
-                            <p class="text-[9px] text-on-surface">كربلاء المقدسة</p>
-                        </div>
-                    </div>
-
-                    <!-- Work stack card -->
-                    <div class="mutmiz-card p-5 rounded-2xl w-72 space-y-2">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-secondary flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-full bg-white"></span></span>
-                            <span class="text-[10px] text-on-surface">أرشفة أعداد المراجعين للمركز</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-primary flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-full bg-white"></span></span>
-                            <span class="text-[10px] text-on-surface">تطوير نظام حجوزات وحدة حقن العين</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Left column: Quotation -->
-                <div class="space-y-8 reveal-init">
-                    <span class="material-symbols-outlined text-primary text-6xl opacity-30 select-none">format_quote</span>
-                    
-                    <p class="text-xl font-medium text-on-background leading-relaxed italic">
-                        "قدمت المهندسة سميرة علي ياسين عملاً متميزاً في أتمتة حجوزات وحدة حقن العين والعمليات الجراحية وإعداد التقارير الإحصائية الطبية للمركز، مما ساعدنا على تحسين رعاية المرضى وتسهيل الأداء الإداري بكفاءة عالية."
-                    </p>
-                    
-                    <div>
-                        <h4 class="font-black text-on-background">إدارة مركز السيدة زينب التخصصي للعيون</h4>
-                        <p class="text-xs text-on-surface">كربلاء المقدسة</p>
-                    </div>
-
-                    <div class="flex items-center gap-2 border-t border-primary/10 pt-6">
-                        <span class="material-symbols-outlined text-green-500 font-black">star_rate</span>
-                        <span class="font-black text-sm text-primary">تقييم المركز الطبي</span>
-                        <div class="flex gap-0.5 text-green-500">★★★★★</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+     
 
         <!-- Projects Section -->
         <section id="projects" class="py-32">
@@ -674,41 +415,72 @@
                 <!-- Projects grid -->
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-right">
                     
-                    <!-- Project Card 1 -->
-                    <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
-                        <div class="relative overflow-hidden aspect-video bg-surface">
-                            <img src="{{ asset('assets/Screenshot 2026-05-26 080329.png') }}" alt="برنامج الإحصاء الطبي للعيون" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    @if(isset($projects) && $projects->isNotEmpty())
+                        @php
+                            $ordinals = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر', 'الحادي عشر', 'الثاني عشر', 'الثالث عشر', 'الرابع عشر', 'الخامس عشر'];
+                        @endphp
+                        @foreach($projects as $project)
+                            @php
+                                $isOdd = $loop->iteration % 2 !== 0;
+                                $themeClass = $isOdd ? 'primary' : 'secondary';
+                                $glowClass = $isOdd ? 'glow-purple' : 'glow-pink';
+                                $ordinalName = $ordinals[$loop->index] ?? $loop->iteration;
+                            @endphp
+                            <!-- Project Card {{ $loop->iteration }} -->
+                            <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
+                                <div class="relative overflow-hidden aspect-video bg-surface">
+                                    <img src="{{ asset($project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                </div>
+                                <div class="p-8 space-y-4">
+                                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-{{ $themeClass }}/10 text-{{ $themeClass }} text-xs font-bold {{ $glowClass }}">{{ $project->category }}</span>
+                                    <h3 class="text-2xl font-black text-on-background leading-snug">{{ $project->title }}</h3>
+                                    <p class="text-xs text-on-surface leading-relaxed">
+                                        {{ $project->description }}
+                                    </p>
+                                </div>
+                                <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
+                                    <span>{{ $project->year }}</span>
+                                    <span class="flex items-center gap-1 font-bold text-{{ $themeClass }}">المشروع {{ $ordinalName }} <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <!-- Project Card 1 (Fallback) -->
+                        <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
+                            <div class="relative overflow-hidden aspect-video bg-surface">
+                                <img src="{{ asset('assets/Screenshot 2026-05-26 080329.png') }}" alt="برنامج الإحصاء الطبي للعيون" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            </div>
+                            <div class="p-8 space-y-4">
+                                <span class="inline-block px-3.5 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold glow-purple">أنظمة إحصائية طبية</span>
+                                <h3 class="text-2xl font-black text-on-background leading-snug">برنامج الإحصاء الطبي للعيون</h3>
+                                <p class="text-xs text-on-surface leading-relaxed">
+                                    نظام إحصائي متكامل لمتابعة وتنظيم إحصاءات الحقن، الأطباء، المرضى، وجدولة وتنسيق مواعيد الزيارات بمركز السيدة زينب التخصصي للعيون بدقة عالية.
+                                </p>
+                            </div>
+                            <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
+                                <span>٢٠٢٥ م</span>
+                                <span class="flex items-center gap-1 font-bold text-primary">المشروع الأول <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
+                            </div>
                         </div>
-                        <div class="p-8 space-y-4">
-                            <span class="inline-block px-3.5 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold glow-purple">أنظمة إحصائية طبية</span>
-                            <h3 class="text-2xl font-black text-on-background leading-snug">برنامج الإحصاء الطبي للعيون</h3>
-                            <p class="text-xs text-on-surface leading-relaxed">
-                                نظام إحصائي متكامل لمتابعة وتنظيم إحصاءات الحقن، الأطباء، المرضى، وجدولة وتنسيق مواعيد الزيارات بمركز السيدة زينب التخصصي للعيون بدقة عالية.
-                            </p>
-                        </div>
-                        <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
-                            <span>٢٠٢٥ م</span>
-                            <span class="flex items-center gap-1 font-bold text-primary">المشروع الأول <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
-                        </div>
-                    </div>
 
-                    <!-- Project Card 2 -->
-                    <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
-                        <div class="relative overflow-hidden aspect-video bg-surface">
-                            <img src="{{ asset('assets/Screenshot 2026-05-26 080212.png') }}" alt="نظام إدارة مخازن وصرف العدسات الطبية" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <!-- Project Card 2 (Fallback) -->
+                        <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
+                            <div class="relative overflow-hidden aspect-video bg-surface">
+                                <img src="{{ asset('assets/Screenshot 2026-05-26 080212.png') }}" alt="نظام إدارة مخازن وصرف العدسات الطبية" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            </div>
+                            <div class="p-8 space-y-4">
+                                <span class="inline-block px-3.5 py-1.5 rounded-full bg-secondary/10 text-secondary text-xs font-bold glow-pink">إدارة مخازن وقواعد بيانات</span>
+                                <h3 class="text-2xl font-black text-on-background leading-snug">نظام إدارة مخازن وصرف العدسات الطبية</h3>
+                                <p class="text-xs text-on-surface leading-relaxed">
+                                    نظام  محوسب للرقابة الذكية على مخزون المستلزمات الطبية وإصدار وتتبع العدسات المصروفة للمرضى بمركز العيون كربلاء.
+                                </p>
+                            </div>
+                            <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
+                                <span>٢٠٢٤ م</span>
+                                <span class="flex items-center gap-1 font-bold text-secondary">المشروع الثاني <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
+                            </div>
                         </div>
-                        <div class="p-8 space-y-4">
-                            <span class="inline-block px-3.5 py-1.5 rounded-full bg-secondary/10 text-secondary text-xs font-bold glow-pink">إدارة مخازن وقواعد بيانات</span>
-                            <h3 class="text-2xl font-black text-on-background leading-snug">نظام إدارة مخازن وصرف العدسات الطبية</h3>
-                            <p class="text-xs text-on-surface leading-relaxed">
-                                نظام برمجائي محوسب للرقابة الذكية على مخزون المستلزمات الطبية وإصدار وتتبع العدسات المصروفة للمرضى بمركز العيون كربلاء.
-                            </p>
-                        </div>
-                        <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
-                            <span>٢٠٢٤ م</span>
-                            <span class="flex items-center gap-1 font-bold text-secondary">المشروع الثاني <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
-                        </div>
-                    </div>
+                    @endif
 
                 </div>
             </div>
@@ -720,7 +492,7 @@
                 
                 <div class="space-y-4">
                     <h2 class="text-4xl lg:text-5xl font-black text-on-background font-display tracking-tight">معلومات الاتصال المباشر</h2>
-                    <p class="text-xs text-on-surface max-w-md mx-auto">لأي استشارات حول إدارة وتجهيز الأجهزة الطبية أو أتمتة الأنظمة الإحصائية للمستشفيات، يسعدني تواصلكم.</p>
+                    <p class="text-xs text-on-surface max-w-md mx-auto">لأي استشارات حول  أتمتة الأنظمة الإحصائية للمستشفيات، يسعدني تواصلكم.</p>
                 </div>
 
                 <!-- Info Cards Grid -->

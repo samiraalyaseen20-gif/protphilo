@@ -110,6 +110,13 @@
         .mockup-zoom-parent:hover img {
             transform: scale(1.04);
         }
+
+        /* Responsive height for mockup container on mobile to keep proportions */
+        @media (max-width: 640px) {
+            .desktop-mockup-container {
+                height: 210px !important;
+            }
+        }
     </style>
 </head>
 <body class="selection:bg-primary/20 selection:text-primary">
@@ -119,13 +126,13 @@
 
     <!-- Navigation Bar -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-black text-primary font-display tracking-tight flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-secondary glow-pink"></span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+            <a href="/" class="text-xl sm:text-2xl font-black text-primary font-display tracking-tight flex items-center gap-1 sm:gap-2">
+                <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-secondary glow-pink"></span>
                 سميرة علي ياسين
             </a>
-            <a href="/#projects" class="flex items-center gap-1.5 text-sm font-bold text-on-surface hover:text-primary transition-all hover:-translate-x-1 duration-300">
-                <span class="material-symbols-outlined text-base">arrow_right_alt</span>
+            <a href="/#projects" class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-on-surface hover:text-primary transition-all hover:-translate-x-1 duration-300">
+                <span class="material-symbols-outlined text-sm sm:text-base">arrow_right_alt</span>
                 العودة لمعرض الأعمال
             </a>
         </div>
@@ -136,17 +143,17 @@
         <div class="max-w-7xl mx-auto px-6 space-y-32">
 
             <!-- ====== HERO: Project Split View ====== -->
-            <section class="grid lg:grid-cols-12 gap-12 items-center pt-8">
+            <section class="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center pt-8">
                 
-                <!-- Right Column: Project Info (7 Cols) -->
-                <div class="lg:col-span-6 space-y-8 text-right order-2 lg:order-1">
+                <!-- Right Column: Project Info (6 Cols on desktop, 100% on mobile) -->
+                <div class="lg:col-span-6 space-y-6 sm:space-y-8 text-right order-2 lg:order-1 w-full">
                     <!-- Breadcrumbs -->
                     <nav class="flex items-center gap-2 text-xs font-semibold text-on-surface/50">
                         <a href="/" class="hover:text-primary transition-colors">الرئيسية</a>
                         <span class="material-symbols-outlined text-[10px]">arrow_left</span>
                         <a href="/#projects" class="hover:text-primary transition-colors">معرض الأعمال</a>
                         <span class="material-symbols-outlined text-[10px]">arrow_left</span>
-                        <span class="text-primary font-bold truncate max-w-[200px]">{{ $project->title }}</span>
+                        <span class="text-primary font-bold truncate max-w-[120px] sm:max-w-[200px]">{{ $project->title }}</span>
                     </nav>
 
                     <!-- Category Badge & Date Info -->
@@ -161,17 +168,17 @@
                     </div>
 
                     <!-- Main Title -->
-                    <h1 class="text-4xl lg:text-5xl font-black text-on-background font-display leading-tight">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-background font-display leading-tight">
                         {{ $project->title }}
                     </h1>
 
                     <!-- Main description block -->
-                    <div class="glass-panel p-6 rounded-2xl shadow-sm leading-relaxed text-on-surface text-base">
+                    <div class="glass-panel p-4 sm:p-6 rounded-2xl shadow-sm leading-relaxed text-on-surface text-sm sm:text-base">
                         {{ $project->description }}
                     </div>
 
                     <!-- Secondary Quick Info Stats Grid -->
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="bg-surface/50 border border-primary/5 p-4 rounded-xl flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg text-lg">category</span>
                             <div>
@@ -189,8 +196,8 @@
                     </div>
                 </div>
 
-                <!-- Left Column: Main Image as Premium Mockup (6 Cols) -->
-                <div class="lg:col-span-6 flex justify-center order-1 lg:order-2">
+                <!-- Left Column: Main Image as Premium Mockup (6 Cols on desktop, 100% on mobile) -->
+                <div class="lg:col-span-6 flex justify-center order-1 lg:order-2 w-full">
                     <div class="tilt-card max-w-[500px] w-full">
                         <div class="desktop-mockup-container float-slow-2 mockup-zoom-parent cursor-pointer w-full"
                              onclick="openLightbox('{{ asset($project->image) }}', '{{ addslashes($project->title) }}')">
@@ -245,11 +252,11 @@
                             $glowClass = $isEven ? 'glow-purple' : 'glow-pink';
                         @endphp
                         
-                        <!-- Alternating row layout -->
-                        <div class="grid lg:grid-cols-12 gap-12 items-center {{ $isEven ? '' : 'lg:[direction:ltr]' }} reveal-init">
+                        <!-- Alternating flex/grid layout to stack perfectly on mobile and side-by-side on desktop -->
+                        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center {{ $isEven ? '' : 'lg:[direction:ltr]' }} reveal-init w-full">
 
-                            <!-- Image Column (6 Cols) -->
-                            <div class="lg:col-span-6 flex justify-center {{ $isEven ? '' : 'lg:[direction:rtl]' }}">
+                            <!-- Image Column (6 Cols on desktop, 100% on mobile) -->
+                            <div class="lg:col-span-6 w-full flex justify-center {{ $isEven ? '' : 'lg:[direction:rtl]' }}">
                                 <div class="tilt-card w-full max-w-[480px]">
                                     <div class="desktop-mockup-container float-slow-1 mockup-zoom-parent cursor-pointer w-full"
                                          onclick="openLightbox('{{ asset($img->image) }}', '{{ addslashes($img->title ?? '') }}')">
@@ -276,8 +283,8 @@
                                 </div>
                             </div>
 
-                            <!-- Text Content Column (6 Cols) -->
-                            <div class="lg:col-span-6 space-y-6 {{ $isEven ? 'text-right' : 'text-right lg:[direction:rtl]' }}">
+                            <!-- Text Content Column (6 Cols on desktop, 100% on mobile) -->
+                            <div class="lg:col-span-6 w-full space-y-6 {{ $isEven ? 'text-right' : 'text-right lg:[direction:rtl]' }}">
                                 
                                 <!-- Index Pill -->
                                 <div class="inline-flex items-center gap-3">
@@ -296,7 +303,7 @@
 
                                 <!-- Image Description Card -->
                                 @if($img->description)
-                                    <div class="glass-panel glowing-card p-6 rounded-2xl shadow-sm text-sm text-on-surface leading-relaxed">
+                                    <div class="glass-panel glowing-card p-4 sm:p-6 rounded-2xl shadow-sm text-sm text-on-surface leading-relaxed">
                                         {{ $img->description }}
                                     </div>
                                 @endif

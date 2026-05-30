@@ -62,7 +62,7 @@
     <main class="relative pt-20 sm:pt-28">
 
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center overflow-hidden relative pt-12 sm:pt-0 pb-16">
+        <section class="min-h-fit lg:min-h-screen flex items-center overflow-visible relative pt-16 sm:pt-20 lg:pt-0 pb-16">
             <div class="max-w-7xl mx-auto px-6 w-full space-y-16">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     
@@ -195,33 +195,44 @@
 
                         </div>
 
-                        <!-- 3. Subgrid for Floating Info cards (Clinic details) -->
-                        <div class="w-full max-w-[700px] mt-2">
-                            <!-- Card 2: Tasks List -->
-                            <div class="mutmiz-card p-5 rounded-2xl shadow-md border border-primary/10 space-y-2 text-right">
-                                <div class="flex justify-between items-center border-b border-primary/5 pb-1">
-                                    <div class="text-xs font-black text-on-background">المهام المنجزة حالياً</div>
-                                    <span class="text-[9px] text-primary font-bold">+ إضافة نظام</span>
+                        <!-- 3. Subgrid for Floating Info cards: Academic Certificate & Software Skills -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-[700px] mt-4">
+                            <!-- Academic Certificate Card -->
+                            <div class="mutmiz-card p-5 rounded-2xl shadow-md border border-primary/10 space-y-4 text-right">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center glow-purple">
+                                        <span class="material-symbols-outlined text-lg">school</span>
+                                    </span>
+                                    <h3 class="text-xs font-black text-on-background">الشهادة الأكاديمية</h3>
                                 </div>
-                                <div class="space-y-1.5">
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-2.5 h-2.5 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                        <span class="text-[9px] text-on-surface">برنامج أتمتة نظام حقن العين بالكامل</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-2.5 h-2.5 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                        <span class="text-[9px] text-on-surface">برنامج إدارة العمليات الجراحية</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-2.5 h-2.5 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                        <span class="text-[9px] text-on-surface">برنامج إدارة الاحصائيات الاستشارية و المختبر </span>
-                                    </div>
-                                    
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-2.5 h-2.5 rounded border border-primary/20 flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-sm bg-primary"></span></span>
-                                        <span class="text-[9px] text-on-surface">التقارير الإحصائية للأنظمة الطبية وأرشفتها</span>
+                                <div class="space-y-1">
+                                    <div class="text-[11px] font-bold text-on-surface">بكلوريوس هندسة أجهزة طبية</div>
+                                    <div class="text-[10px] text-on-surface/80">كلية الحسين الجامعة</div>
+                                    <div class="text-[9px] font-bold text-primary">سنة التخرج: ٢٠٢١ - ٢٠٢٢ م</div>
+                                </div>
+                                <div class="pt-2 border-t border-primary/5">
+                                    <div class="text-[9px] font-bold text-on-surface/60 mb-1">اللغات:</div>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="px-2 py-0.5 rounded-full bg-[#f1f0ff] border border-primary/5 text-[9px] font-bold text-primary">العربية (اللغة الأم)</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-[#fdf0f4] border border-secondary/5 text-[9px] font-bold text-secondary">الإنجليزية (مستوى متقدم)</span>
                                     </div>
                                 </div>
+                            </div>
+
+                            <!-- Software Skills Card -->
+                            <div class="mutmiz-card p-5 rounded-2xl shadow-md border border-primary/10 space-y-4 text-right">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-9 h-9 rounded-full bg-secondary/10 text-secondary flex items-center justify-center glow-pink">
+                                        <span class="material-symbols-outlined text-lg">terminal</span>
+                                    </span>
+                                    <h3 class="text-xs font-black text-on-background">المهارات البرمجية</h3>
+                                </div>
+                                <ul class="text-[10px] text-on-surface leading-relaxed space-y-1.5 list-disc pr-4">
+                                    <li>تطوير وبرمجة الأنظمة (HTML, CSS, C#)</li>
+                                    <li>إدارة قواعد البيانات الطبية بدقة عالية</li>
+                                    <li>توظيف تقنيات الذكاء الاصطناعي في الأرشفة</li>
+                                    <li>إجادة كاملة لبرامج MS Office (Word, Excel, PPT)</li>
+                                </ul>
                             </div>
                         </div>
 
@@ -321,43 +332,7 @@
             </div>
         </section>
 
-        <!-- Academic Certificate Section -->
-        <section id="about-us" class="py-32 relative text-right">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Academic Card -->
-                <div class="glass-panel glowing-card p-8 rounded-3xl shadow-xl border border-primary/10 reveal-init space-y-4 max-w-md mx-auto lg:mr-0">
-                    <span class="material-symbols-outlined text-primary text-5xl">school</span>
-                    <h3 class="text-2xl font-black text-on-background">الشهادة الأكاديمية</h3>
-                    <div class="text-lg font-bold text-on-surface">بكلوريوس هندسة اجهزة طبية</div>
-                    <p class="text-sm text-on-surface">كلية الحسين الجامعة</p>
-                    <div class="text-sm font-bold text-primary">سنة التخرج: ٢٠٢١ - ٢٠٢٢ م</div>
-                </div>
 
-                <!-- Languages & Basic Info -->
-                <div class="space-y-8 reveal-init">
-                    <h2 class="text-4xl font-black text-on-background font-display leading-tight">المهارات واللغات والقدرات الفنية</h2>
-                    
-                    <div class="grid grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="font-bold text-primary text-lg mb-3">اللغات</h3>
-                            <ul class="text-xs text-on-surface space-y-2">
-                                <li>● اللغة العربية (اللغة الأم)</li>
-                                <li>● اللغة الإنجليزية (مستوى متقدم)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-secondary text-lg mb-3">المهارات البرمجية</h3>
-                            <ul class="text-xs text-on-surface space-y-2">
-                                <li>● تطوير وبرمجة الأنظمة (HTML, CSS, C#)</li>
-                                <li>● إدارة قواعد البيانات الطبية بدقة عالية</li>
-                                <li>● توظيف تقنيات الذكاء الاصطناعي في الأرشفة</li>
-                                <li>● إجادة كاملة لبرامج MS Office (Word, Excel, PPT)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Violet Card Call to Action -->
         <section class="py-32 text-right">

@@ -19,6 +19,15 @@ class AdminProjectController extends Controller
     }
 
     /**
+     * Show the edit form and manage images for a specific project.
+     */
+    public function edit(Project $project)
+    {
+        $project->load('images');
+        return view('admin.projects.edit', compact('project'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -117,7 +126,7 @@ class AdminProjectController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'تم تحديث المشروع بنجاح!');
+        return redirect()->route('admin.projects.edit', $project->id)->with('success', 'تم تحديث المشروع بنجاح!');
     }
 
     /**
@@ -171,9 +180,8 @@ class AdminProjectController extends Controller
             'order'       => ProjectImage::where('project_id', $project->id)->max('order') + 1,
         ]);
 
-        return redirect()->route('admin.dashboard')
-            ->with('success', 'تمت إضافة الصورة بنجاح!')
-            ->withFragment('project-' . $project->id);
+        return redirect()->route('admin.projects.edit', $project->id)
+            ->with('success', 'تمت إضافة الصورة بنجاح!');
     }
 
     /**
@@ -191,8 +199,7 @@ class AdminProjectController extends Controller
         $projectId = $projectImage->project_id;
         $projectImage->delete();
 
-        return redirect()->route('admin.dashboard')
-            ->with('success', 'تم حذف الصورة بنجاح!')
-            ->withFragment('project-' . $projectId);
+        return redirect()->route('admin.projects.edit', $projectId)
+            ->with('success', 'تم حذف الصورة بنجاح!');
     }
 }

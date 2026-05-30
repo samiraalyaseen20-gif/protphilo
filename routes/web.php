@@ -35,6 +35,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     // Projects CRUD
     Route::post('/projects', [AdminProjectController::class, 'store'])->name('admin.projects.store');
+    Route::get('/projects/{project}/edit', [AdminProjectController::class, 'edit'])->name('admin.projects.edit');
     Route::post('/projects/{project}/update', [AdminProjectController::class, 'update'])->name('admin.projects.update');
     Route::delete('/projects/{project}', [AdminProjectController::class, 'destroy'])->name('admin.projects.destroy');
 

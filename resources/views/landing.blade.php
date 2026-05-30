@@ -93,12 +93,7 @@
                                 <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span>
                             </a>
                         </div>
-                    </div>
-
-                    <!-- Left Column: Structured Mockup Area without Overlapping -->
-                    <div class="lg:col-span-7 flex flex-col items-center gap-6 w-full">
-                        
-                        </div>
+                   
 
                         <!-- 3. Subgrid for Floating Info cards: Academic Certificate & Software Skills -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-[700px] mt-4">

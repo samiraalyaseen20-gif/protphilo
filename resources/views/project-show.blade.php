@@ -99,16 +99,10 @@
             border-color: rgba(124, 58, 237, 0.2);
         }
 
-        /* Image hover zoom inside mockup */
+        /* Mockup parent styling */
         .mockup-zoom-parent {
             overflow: hidden;
             position: relative;
-        }
-        .mockup-zoom-parent img {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .mockup-zoom-parent:hover img {
-            transform: scale(1.04);
         }
 
         /* Responsive height for mockup container on mobile to keep proportions */
@@ -143,10 +137,10 @@
         <div class="max-w-7xl mx-auto px-6 space-y-32">
 
             <!-- ====== HERO: Project Split View ====== -->
-            <section class="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center pt-8">
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-8">
                 
-                <!-- Right Column: Project Info (6 Cols on desktop, 100% on mobile) -->
-                <div class="lg:col-span-6 space-y-6 sm:space-y-8 text-right order-2 lg:order-1 w-full">
+                <!-- Right Column: Project Info (50% on desktop, 100% on mobile) -->
+                <div class="space-y-6 sm:space-y-8 text-right order-2 md:order-1 w-full">
                     <!-- Breadcrumbs -->
                     <nav class="flex items-center gap-2 text-xs font-semibold text-on-surface/50">
                         <a href="/" class="hover:text-primary transition-colors">الرئيسية</a>
@@ -196,10 +190,10 @@
                     </div>
                 </div>
 
-                <!-- Left Column: Main Image as Premium Mockup (6 Cols on desktop, 100% on mobile) -->
-                <div class="lg:col-span-6 flex justify-center order-1 lg:order-2 w-full">
-                    <div class="tilt-card max-w-[500px] w-full">
-                        <div class="desktop-mockup-container float-slow-2 mockup-zoom-parent cursor-pointer w-full"
+                <!-- Left Column: Main Image as Premium Mockup (50% on desktop, 100% on mobile) -->
+                <div class="flex justify-center order-1 md:order-2 w-full">
+                    <div class="max-w-[500px] w-full">
+                        <div class="desktop-mockup-container mockup-zoom-parent cursor-pointer w-full"
                              onclick="openLightbox('{{ asset($project->image) }}', '{{ addslashes($project->title) }}')">
                             <!-- Mockup header -->
                             <div class="desktop-header flex justify-between items-center bg-[#fdfcff] px-4 py-2 border-b border-primary/5">
@@ -252,13 +246,13 @@
                             $glowClass = $isEven ? 'glow-purple' : 'glow-pink';
                         @endphp
                         
-                        <!-- Alternating flex/grid layout to stack perfectly on mobile and side-by-side on desktop -->
-                        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center w-full">
+                        <!-- Alternating grid columns layout to stack perfectly on mobile and side-by-side on desktop -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
 
-                            <!-- Image Column (6 Cols on desktop, 100% on mobile) -->
-                            <div class="lg:col-span-6 w-full flex justify-center {{ $isEven ? 'lg:order-first' : 'lg:order-last' }}">
-                                <div class="tilt-card w-full max-w-[480px]">
-                                    <div class="desktop-mockup-container float-slow-1 mockup-zoom-parent cursor-pointer w-full"
+                            <!-- Image Column (50% on desktop, 100% on mobile) -->
+                            <div class="w-full flex justify-center {{ $isEven ? 'md:order-first' : 'md:order-last' }}">
+                                <div class="w-full max-w-[480px]">
+                                    <div class="desktop-mockup-container mockup-zoom-parent cursor-pointer w-full"
                                          onclick="openLightbox('{{ asset($img->image) }}', '{{ addslashes($img->title ?? '') }}')">
                                         <!-- Mockup Header -->
                                         <div class="desktop-header flex justify-between items-center bg-[#fdfcff] px-4 py-2 border-b border-primary/5">
@@ -283,8 +277,8 @@
                                 </div>
                             </div>
 
-                            <!-- Text Content Column (6 Cols on desktop, 100% on mobile) wrapped entirely in a beautiful text card -->
-                            <div class="lg:col-span-6 w-full {{ $isEven ? 'lg:order-last' : 'lg:order-first' }}">
+                            <!-- Text Content Column (50% on desktop, 100% on mobile) wrapped entirely in a beautiful text card -->
+                            <div class="w-full {{ $isEven ? 'md:order-last' : 'md:order-first' }}">
                                 <div class="mutmiz-card glass-panel glowing-card p-6 sm:p-8 rounded-3xl space-y-6 text-right w-full">
                                     
                                     <!-- Index Pill + Title -->

@@ -253,10 +253,10 @@
                         @endphp
                         
                         <!-- Alternating flex/grid layout to stack perfectly on mobile and side-by-side on desktop -->
-                        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center {{ $isEven ? '' : 'lg:[direction:ltr]' }} reveal-init w-full">
+                        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center w-full">
 
                             <!-- Image Column (6 Cols on desktop, 100% on mobile) -->
-                            <div class="lg:col-span-6 w-full flex justify-center {{ $isEven ? '' : 'lg:[direction:rtl]' }}">
+                            <div class="lg:col-span-6 w-full flex justify-center {{ $isEven ? 'lg:order-first' : 'lg:order-last' }}">
                                 <div class="tilt-card w-full max-w-[480px]">
                                     <div class="desktop-mockup-container float-slow-1 mockup-zoom-parent cursor-pointer w-full"
                                          onclick="openLightbox('{{ asset($img->image) }}', '{{ addslashes($img->title ?? '') }}')">
@@ -283,40 +283,42 @@
                                 </div>
                             </div>
 
-                            <!-- Text Content Column (6 Cols on desktop, 100% on mobile) -->
-                            <div class="lg:col-span-6 w-full space-y-6 {{ $isEven ? 'text-right' : 'text-right lg:[direction:rtl]' }}">
-                                
-                                <!-- Index Pill -->
-                                <div class="inline-flex items-center gap-3">
-                                    <span class="w-10 h-10 rounded-full bg-{{ $themeClass }}/10 text-{{ $themeClass }} flex items-center justify-center text-sm font-black {{ $glowClass }} font-mono">
-                                        0{{ $index + 1 }}
-                                    </span>
-                                    <div class="h-0.5 w-16 bg-gradient-to-l from-{{ $themeClass }}/20 to-transparent"></div>
-                                </div>
-
-                                <!-- Image Title -->
-                                @if($img->title)
-                                    <h3 class="text-2xl font-black text-on-background leading-snug">
-                                        {{ $img->title }}
-                                    </h3>
-                                @endif
-
-                                <!-- Image Description Card -->
-                                @if($img->description)
-                                    <div class="glass-panel glowing-card p-4 sm:p-6 rounded-2xl shadow-sm text-sm text-on-surface leading-relaxed">
-                                        {{ $img->description }}
+                            <!-- Text Content Column (6 Cols on desktop, 100% on mobile) wrapped entirely in a beautiful text card -->
+                            <div class="lg:col-span-6 w-full {{ $isEven ? 'lg:order-last' : 'lg:order-first' }}">
+                                <div class="mutmiz-card glass-panel glowing-card p-6 sm:p-8 rounded-3xl space-y-6 text-right w-full">
+                                    
+                                    <!-- Index Pill + Title -->
+                                    <div class="flex items-center justify-between gap-4">
+                                        @if($img->title)
+                                            <h3 class="text-xl sm:text-2xl font-black text-on-background leading-snug">
+                                                {{ $img->title }}
+                                            </h3>
+                                        @else
+                                            <div></div>
+                                        @endif
+                                        <span class="w-10 h-10 shrink-0 rounded-full bg-{{ $themeClass }}/10 text-{{ $themeClass }} flex items-center justify-center text-sm font-black {{ $glowClass }} font-mono">
+                                            0{{ $index + 1 }}
+                                        </span>
                                     </div>
-                                @endif
 
-                                <!-- Zoom Trigger Link -->
-                                <div>
-                                    <button
-                                        onclick="openLightbox('{{ asset($img->image) }}', '{{ addslashes($img->title ?? '') }}')"
-                                        class="inline-flex items-center gap-2 text-xs font-bold text-{{ $themeClass }} hover:opacity-80 transition-all hover:translate-x-1"
-                                    >
-                                        <span class="material-symbols-outlined text-sm font-black">zoom_in</span>
-                                        تكبير وعرض الشاشة
-                                    </button>
+                                    <!-- Description -->
+                                    @if($img->description)
+                                        <p class="text-sm text-on-surface leading-relaxed">
+                                            {{ $img->description }}
+                                        </p>
+                                    @endif
+
+                                    <!-- Zoom Trigger Link -->
+                                    <div class="pt-4 border-t border-primary/5">
+                                        <button
+                                            onclick="openLightbox('{{ asset($img->image) }}', '{{ addslashes($img->title ?? '') }}')"
+                                            class="inline-flex items-center gap-2 text-xs font-bold text-{{ $themeClass }} hover:opacity-80 transition-all hover:translate-x-1"
+                                        >
+                                            <span class="material-symbols-outlined text-sm font-black">zoom_in</span>
+                                            تكبير وعرض الشاشة
+                                        </button>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -327,7 +329,7 @@
             @endif
 
             <!-- ====== Violet Call to Action (Landing Page CTA) ====== -->
-            <section class="reveal-init">
+            <section>
                 <div class="hero-bottom-block rounded-[3rem] p-12 md:p-16 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 text-right">
                     
                     <!-- Left visual: Phone Mockup inside banner -->

@@ -322,47 +322,16 @@
             </section>
             @endif
 
-            <!-- ====== Violet Call to Action (Landing Page CTA) ====== -->
-            <section>
-                <div class="hero-bottom-block rounded-[3rem] p-12 md:p-16 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 text-right">
-                    
-                    <!-- Left visual: Phone Mockup inside banner -->
-                    <div class="relative w-64 flex justify-center">
-                        <div class="phone-mockup-container float-slow-1 shadow-2xl border-4 border-white/20" style="height: 380px; width: 220px; border-radius: 30px;">
-                            <div class="phone-notch" style="width: 80px; height: 14px;"></div>
-                            <div class="phone-screen bg-[#f8f7ff] p-4 flex flex-col justify-center space-y-4">
-                                <div class="bg-white p-3 rounded-xl border border-primary/5 shadow-sm space-y-2">
-                                    <span class="text-[8px] font-black px-1.5 py-0.5 rounded bg-primary/10 text-primary">تمت أتمتة النظام</span>
-                                    <div class="text-[10px] font-black text-right">إدارة الحجوزات الطبية</div>
-                                    <div class="w-full bg-[#f3f4f6] h-1 rounded-full overflow-hidden">
-                                        <div class="bg-primary h-full rounded-full" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right visual: Description and CTA button -->
-                    <div class="md:w-[60%] space-y-6">
-                        <h2 class="text-3xl md:text-4xl font-black text-white leading-tight font-display">
-                            هل تبحث عن أنظمة إدارية وإحصائية مماثلة؟
-                        </h2>
-                        <p class="text-white/80 text-sm leading-relaxed max-w-lg mx-auto md:mr-0">
-                            أصمم برمجيات طبية وقواعد بيانات متكاملة لتبسيط الحجوزات، العمليات الجراحية، وإدارة مخازن العدسات بدقة وسرعة فائقة.
-                        </p>
-                        <div class="pt-2 flex flex-wrap gap-4 justify-start">
-                            <a href="/#contact" class="px-8 py-3.5 rounded-full bg-secondary text-white font-black text-xs shadow-2xl hover:scale-105 transition-all flex items-center gap-2">
-                                تواصل معي الآن
-                                <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span>
-                            </a>
-                            <a href="/#projects" class="px-8 py-3.5 rounded-full bg-white/10 text-white font-bold hover:bg-white/20 transition-all text-xs flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
-                                تصفح باقي الأعمال
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+            <!-- ====== Action Buttons (CTA) ====== -->
+            <section class="flex flex-wrap justify-center gap-4 py-8">
+                <a href="/#contact" class="px-8 py-3.5 rounded-full bg-secondary text-white font-bold shadow-lg shadow-secondary/30 hover:scale-105 transition-all text-sm flex items-center gap-2">
+                    تواصل معي الآن
+                    <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span>
+                </a>
+                <a href="/#projects" class="px-8 py-3.5 rounded-full bg-primary/10 text-primary font-bold hover:bg-primary/20 transition-all text-sm flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+                    تصفح باقي الأعمال
+                </a>
             </section>
 
         </div>

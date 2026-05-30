@@ -50,24 +50,24 @@
 
     <!-- Navigation Bar -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-center items-center">
-            <div class="text-2xl font-black text-primary font-display tracking-tight flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-secondary glow-pink"></span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-center items-center">
+            <div class="text-xl sm:text-2xl font-black text-primary font-display tracking-tight flex items-center gap-2">
+                <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-secondary glow-pink"></span>
                 سميرة علي ياسين
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="relative pt-28">
+    <main class="relative pt-20 sm:pt-28">
 
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center overflow-hidden relative pb-16">
+        <section class="min-h-screen flex items-center overflow-hidden relative pt-12 sm:pt-0 pb-16">
             <div class="max-w-7xl mx-auto px-6 w-full space-y-16">
-                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     
                     <!-- Right Column: Text (LTR left, RTL right) -->
-                    <div class="lg:col-span-5 space-y-8 text-center lg:text-right">
+                    <div class="lg:col-span-5 space-y-6 sm:space-y-8 text-center lg:text-right">
                         <!-- Trustpilot Pill Badge -->
                         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f0ff] border border-primary/10 text-xs font-bold text-on-background">
                             <span class="material-symbols-outlined text-green-500 font-black text-sm">star_rate</span>
@@ -76,13 +76,13 @@
                         </div>
                         
                         <!-- Main Header -->
-                        <h1 class="text-5xl lg:text-6xl font-black leading-tight text-on-background font-display tracking-tight">
+                        <h1 class="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight text-on-background font-display tracking-tight">
                             أصمم وأطور <br>
                             <span class="text-primary glow-purple">الأنظمة الطبية الإدارية</span>
                         </h1>
                         
                         <!-- Description -->
-                        <p class="text-lg text-on-surface leading-relaxed max-w-xl mx-auto lg:mr-0">
+                        <p class="text-sm sm:text-base lg:text-lg text-on-surface leading-relaxed max-w-xl mx-auto lg:mr-0">
                             المهندسة سميرة علي ياسين ال ياسين. أقدم حلولاً برمجية متكاملة تركز على أتمتة الأنظمة الإدارية، والأرشفة الإلكترونية الشاملة للبيانات الطبية، وتطوير قواعد البيانات والبرمجيات الإحصائية لتقليل الأخطاء ودعم اتخاذ القرار.
                         </p>
 

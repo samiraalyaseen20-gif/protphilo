@@ -248,3 +248,10 @@ a, button, [role="button"] {
         margin-bottom: 1.5rem;
     }
 }
+
+/* Proportional responsive height for desktop mockups on mobile screens */
+@media (max-width: 640px) {
+    .desktop-mockup-container {
+        height: 210px !important;
+    }
+}

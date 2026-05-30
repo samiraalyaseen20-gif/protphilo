@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminProjectController;
+use App\Http\Controllers\AdminResumeController;
 use App\Http\Controllers\ProjectController;
 use App\Models\Project;
 
@@ -13,7 +14,9 @@ use App\Models\Project;
 
 Route::get('/', function () {
     $projects = Project::orderBy('id', 'desc')->get();
-    return view('landing', compact('projects'));
+    $experiences = \App\Models\Experience::orderBy('sort_order', 'asc')->orderBy('id', 'asc')->get();
+    $resumeSettings = \App\Models\ResumeSetting::first();
+    return view('landing', compact('projects', 'experiences', 'resumeSettings'));
 });
 
 // Project Details Page
@@ -42,6 +45,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // Project Images
     Route::post('/projects/{project}/images', [AdminProjectController::class, 'storeImage'])->name('admin.projects.images.store');
     Route::delete('/project-images/{projectImage}', [AdminProjectController::class, 'destroyImage'])->name('admin.projects.images.destroy');
+
+    // Resume & Experiences CRUD
+    Route::get('/resume', [AdminResumeController::class, 'edit'])->name('admin.resume.edit');
+    Route::post('/resume/settings', [AdminResumeController::class, 'updateSettings'])->name('admin.resume.settings.update');
+    Route::post('/resume/experiences', [AdminResumeController::class, 'storeExperience'])->name('admin.resume.experiences.store');
+    Route::post('/resume/experiences/{experience}/update', [AdminResumeController::class, 'updateExperience'])->name('admin.resume.experiences.update');
+    Route::delete('/resume/experiences/{experience}', [AdminResumeController::class, 'destroyExperience'])->name('admin.resume.experiences.destroy');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });

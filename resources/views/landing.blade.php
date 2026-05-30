@@ -106,15 +106,24 @@
                                     <h3 class="text-xs font-black text-on-background">الشهادة الأكاديمية</h3>
                                 </div>
                                 <div class="space-y-1">
-                                    <div class="text-[11px] font-bold text-on-surface">بكلوريوس هندسة أجهزة طبية</div>
-                                    <div class="text-[10px] text-on-surface/80">كلية الحسين الجامعة</div>
-                                    <div class="text-[9px] font-bold text-primary">سنة التخرج: ٢٠٢١ - ٢٠٢٢ م</div>
+                                    <div class="text-[11px] font-bold text-on-surface">{{ $resumeSettings->degree ?? 'بكلوريوس هندسة أجهزة طبية' }}</div>
+                                    <div class="text-[10px] text-on-surface/80">{{ $resumeSettings->university ?? 'كلية الحسين الجامعة' }}</div>
+                                    <div class="text-[9px] font-bold text-primary">سنة التخرج: {{ $resumeSettings->graduation_year ?? '٢٠٢١ - ٢٠٢٢ م' }}</div>
                                 </div>
                                 <div class="pt-2 border-t border-primary/5">
                                     <div class="text-[9px] font-bold text-on-surface/60 mb-1">اللغات:</div>
                                     <div class="flex flex-wrap gap-1.5">
-                                        <span class="px-2 py-0.5 rounded-full bg-[#f1f0ff] border border-primary/5 text-[9px] font-bold text-primary">العربية (اللغة الأم)</span>
-                                        <span class="px-2 py-0.5 rounded-full bg-[#fdf0f4] border border-secondary/5 text-[9px] font-bold text-secondary">الإنجليزية (مستوى متقدم)</span>
+                                        @if(isset($resumeSettings) && !empty($resumeSettings->languages))
+                                            @foreach($resumeSettings->languages_list as $langIdx => $lang)
+                                                @php
+                                                    $badgeClass = $langIdx % 2 === 0 ? 'bg-[#f1f0ff] border-primary/5 text-primary' : 'bg-[#fdf0f4] border-secondary/5 text-secondary';
+                                                @endphp
+                                                <span class="px-2 py-0.5 rounded-full {{ $badgeClass }} border text-[9px] font-bold">{{ $lang }}</span>
+                                            @endforeach
+                                        @else
+                                            <span class="px-2 py-0.5 rounded-full bg-[#f1f0ff] border border-primary/5 text-[9px] font-bold text-primary">العربية (اللغة الأم)</span>
+                                            <span class="px-2 py-0.5 rounded-full bg-[#fdf0f4] border border-secondary/5 text-[9px] font-bold text-secondary">الإنجليزية (مستوى متقدم)</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -128,10 +137,16 @@
                                     <h3 class="text-xs font-black text-on-background">المهارات البرمجية</h3>
                                 </div>
                                 <ul class="text-[10px] text-on-surface leading-relaxed space-y-1.5 list-disc pr-4">
-                                    <li>تطوير وبرمجة الأنظمة (HTML, CSS, C#)</li>
-                                    <li>إدارة قواعد البيانات الطبية بدقة عالية</li>
-                                    <li>توظيف تقنيات الذكاء الاصطناعي في الأرشفة</li>
-                                    <li>إجادة كاملة لبرامج MS Office (Word, Excel, PPT)</li>
+                                    @if(isset($resumeSettings) && !empty($resumeSettings->skills))
+                                        @foreach($resumeSettings->skills_list as $skill)
+                                            <li>{{ $skill }}</li>
+                                        @endforeach
+                                    @else
+                                        <li>تطوير وبرمجة الأنظمة (HTML, CSS, C#)</li>
+                                        <li>إدارة قواعد البيانات الطبية بدقة عالية</li>
+                                        <li>توظيف تقنيات الذكاء الاصطناعي في الأرشفة</li>
+                                        <li>إجادة كاملة لبرامج MS Office (Word, Excel, PPT)</li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -154,80 +169,105 @@
 
                 <!-- Vertical Timeline track -->
                 <div class="timeline-track space-y-12">
-                    
-                    <!-- Experience 1 -->
-                    <div class="relative flex flex-col md:flex-row items-center md:justify-between reveal-init">
-                        <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                        <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
-                            <span class="material-symbols-outlined text-sm font-bold font-black">clinical_suite</span>
+                    @if(isset($experiences) && $experiences->isNotEmpty())
+                        @foreach($experiences as $index => $exp)
+                            @php
+                                $isEven = $index % 2 === 0;
+                                $glowClass = $isEven ? 'glow-pink' : 'glow-purple';
+                                $colorClass = $isEven ? 'primary' : 'secondary';
+                            @endphp
+                            <!-- Experience {{ $index + 1 }} -->
+                            <div class="relative flex flex-col md:flex-row {{ $isEven ? '' : 'md:flex-row-reverse' }} items-center md:justify-between reveal-init">
+                                <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
+                                <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white {{ $glowClass }} border-4 border-[#fff9fb] z-10">
+                                    <span class="material-symbols-outlined text-sm font-bold">{{ $exp->icon }}</span>
+                                </div>
+                                <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
+                                    <div class="text-{{ $colorClass }} font-black text-xl mb-2">{{ $exp->year_range }}</div>
+                                    <h3 class="text-lg font-black text-on-surface mb-2">{{ $exp->title }}</h3>
+                                    <div class="text-xs text-{{ $colorClass }} font-bold mb-3">{{ $exp->company }}</div>
+                                    <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                                        @foreach($exp->responsibilities_list as $task)
+                                            <li>{{ $task }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <!-- Experience 1 (Fallback) -->
+                        <div class="relative flex flex-col md:flex-row items-center md:justify-between reveal-init">
+                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
+                                <span class="material-symbols-outlined text-sm font-bold font-black">clinical_suite</span>
+                            </div>
+                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
+                                <div class="text-primary font-black text-xl mb-2">٢٠٢٥ - حتى الآن</div>
+                                <h3 class="text-lg font-black text-on-surface mb-2">مسؤولة الاحصاء الطبي</h3>
+                                <div class="text-xs text-primary font-bold mb-3">مركز السيدة زينب (ع) التخصصي للعيون</div>
+                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                                    <li>تصميم وتطوير أنظمة إحصائية لمتابعة أعداد مراجعي المرضى لكل طبيب.</li>
+                                    <li>إعداد تقارير تحليلية دورية لقياس حجم العمل ومؤشرات أداء الأطباء.</li>
+                                    <li>إنشاء نظام إحصائي للمختبر يسجل عدد المراجعين وأنواع التحاليل المنجزة.</li>
+                                    <li>تطوير نظام لإدارة العمليات الجراحية، ونظام محوسب لإدارة المخزن وصرف العدسات الطبية.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                            <div class="text-primary font-black text-xl mb-2">٢٠٢٥ - حتى الآن</div>
-                            <h3 class="text-lg font-black text-on-surface mb-2">مسؤولة الاحصاء الطبي</h3>
-                            <div class="text-xs text-primary font-bold mb-3">مركز السيدة زينب (ع) التخصصي للعيون</div>
-                            <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
-                                <li>تصميم وتطوير أنظمة إحصائية لمتابعة أعداد مراجعي المرضى لكل طبيب.</li>
-                                <li>إعداد تقارير تحليلية دورية لقياس حجم العمل ومؤشرات أداء الأطباء.</li>
-                                <li>إنشاء نظام إحصائي للمختبر يسجل عدد المراجعين وأنواع التحاليل المنجزة.</li>
-                                <li>تطوير نظام لإدارة العمليات الجراحية، ونظام محوسب لإدارة المخزن وصرف العدسات الطبية.</li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <!-- Experience 2 -->
-                    <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
-                        <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                        <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-purple border-4 border-[#fff9fb] z-10">
-                            <span class="material-symbols-outlined text-sm font-bold">computer</span>
+                        <!-- Experience 2 (Fallback) -->
+                        <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
+                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-purple border-4 border-[#fff9fb] z-10">
+                                <span class="material-symbols-outlined text-sm font-bold">computer</span>
+                            </div>
+                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
+                                <div class="text-secondary font-black text-xl mb-2">٢٠٢٤</div>
+                                <h3 class="text-lg font-black text-on-surface mb-2">مسؤولة حاسبة الحجوزات ومطورة أنظمة إدارية</h3>
+                                <div class="text-xs text-secondary font-bold mb-3">مركز السيدة زينب (ع) التخصصي للعيون</div>
+                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                                    <li>إدارة وتنظيم جدول مواعيد حقن العين لمرضى العيون واستكمال استمارات اللجان.</li>
+                                    <li>تطوير نظام إلكتروني لإدارة الحجوزات والبيانات الطبية لتقليل الأخطاء الإدارية وأتمتتها.</li>
+                                    <li>استخراج تقارير إحصائية شهرية وسنوية شاملة لحالات الحقن والمراجعات.</li>
+                                    <li>تمت الترقية للإشراف الكامل على وحدة الحقن وإدارة كادر العمل اليومي.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                            <div class="text-secondary font-black text-xl mb-2">٢٠٢٤</div>
-                            <h3 class="text-lg font-black text-on-surface mb-2">مسؤولة حاسبة الحجوزات ومطورة أنظمة إدارية</h3>
-                            <div class="text-xs text-secondary font-bold mb-3">مركز السيدة زينب (ع) التخصصي للعيون</div>
-                            <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
-                                <li>إدارة وتنظيم جدول مواعيد حقن العين لمرضى العيون واستكمال استمارات اللجان.</li>
-                                <li>تطوير نظام إلكتروني لإدارة الحجوزات والبيانات الطبية لتقليل الأخطاء الإدارية وأتمتتها.</li>
-                                <li>استخراج تقارير إحصائية شهرية وسنوية شاملة لحالات الحقن والمراجعات.</li>
-                                <li>تمت الترقية للإشراف الكامل على وحدة الحقن وإدارة كادر العمل اليومي.</li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <!-- Experience 3 -->
-                    <div class="relative flex flex-col md:flex-row items-center md:justify-between reveal-init">
-                        <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                        <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
-                            <span class="material-symbols-outlined text-sm font-bold">construction</span>
+                        <!-- Experience 3 (Fallback) -->
+                        <div class="relative flex flex-col md:flex-row items-center md:justify-between reveal-init">
+                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
+                                <span class="material-symbols-outlined text-sm font-bold">construction</span>
+                            </div>
+                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
+                                <div class="text-primary font-black text-xl mb-2">٢٠٢٤</div>
+                                <h3 class="text-lg font-black text-on-surface mb-2">مهندسة اجهزة طبية</h3>
+                                <div class="text-xs text-primary font-bold mb-3">دائرة صحة كربلاء - قسم المشاريع والخدمات الهندسية</div>
+                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                                    <li>إعداد وصياغة الكتب والمخاطبات الرسمية الموجهة للدوائر الطبية والمؤسسات ذات العلاقة.</li>
+                                    <li>تنظيم كتب الاعتذار والموافقات الرسمية الخاصة بتجهيز الأجهزة والمعدات الطبية بكربلاء.</li>
+                                    <li>متابعة الموافقات الرسمية والمطابقة الفنية والتقنية للمواصفات القياسية.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                            <div class="text-primary font-black text-xl mb-2">٢٠٢٤</div>
-                            <h3 class="text-lg font-black text-on-surface mb-2">مهندسة اجهزة طبية</h3>
-                            <div class="text-xs text-primary font-bold mb-3">دائرة صحة كربلاء - قسم المشاريع والخدمات الهندسية</div>
-                            <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
-                                <li>إعداد وصياغة الكتب والمخاطبات الرسمية الموجهة للدوائر الطبية والمؤسسات ذات العلاقة.</li>
-                                <li>تنظيم كتب الاعتذار والموافقات الرسمية الخاصة بتجهيز الأجهزة والمعدات الطبية بكربلاء.</li>
-                                <li>متابعة الموافقات الرسمية والمطابقة الفنية والتقنية للمواصفات القياسية.</li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <!-- Experience 4 -->
-                    <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
-                        <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                        <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-purple border-4 border-[#fff9fb] z-10">
-                            <span class="material-symbols-outlined text-sm font-bold">palette</span>
+                        <!-- Experience 4 (Fallback) -->
+                        <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
+                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-purple border-4 border-[#fff9fb] z-10">
+                                <span class="material-symbols-outlined text-sm font-bold">palette</span>
+                            </div>
+                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
+                                <div class="text-secondary font-black text-xl mb-2">٢٠٢٢ - ٢٠٢٤</div>
+                                <h3 class="text-lg font-black text-on-surface mb-2">مصممة كرافيك</h3>
+                                <div class="text-xs text-secondary font-bold mb-3">العتبة الحسينية المقدسة - قسم رعاية الطفولة (مركز الحوراء زينب)</div>
+                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                                    <li>تطوير الهوية البصرية للبرامج والأنشطة الثقافية وتصميم منشورات وكتب الشهداء.</li>
+                                    <li>إعداد وتجهيز المواد الدعائية والبصرية المطبوعة والرقمية للفعاليات والمهرجانات.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                            <div class="text-secondary font-black text-xl mb-2">٢٠٢٢ - ٢٠٢٤</div>
-                            <h3 class="text-lg font-black text-on-surface mb-2">مصممة كرافيك</h3>
-                            <div class="text-xs text-secondary font-bold mb-3">العتبة الحسينية المقدسة - قسم رعاية الطفولة (مركز الحوراء زينب)</div>
-                            <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
-                                <li>تطوير الهوية البصرية للبرامج والأنشطة الثقافية وتصميم منشورات وكتب الشهداء.</li>
-                                <li>إعداد وتجهيز المواد الدعائية والبصرية المطبوعة والرقمية للفعاليات والمهرجانات.</li>
-                            </ul>
-                        </div>
-                    </div>
-
+                    @endif
                 </div>
             </div>
         </section>

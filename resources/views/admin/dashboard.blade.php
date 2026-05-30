@@ -372,8 +372,128 @@
             </div>
         </div>
 
+        {{-- ====== PROJECT IMAGES MANAGEMENT ====== --}}
+        @forelse($projects->load('images') as $project)
+        <div id="project-{{ $project->id }}" class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between flex-wrap gap-2">
+                <div>
+                    <h2 class="text-sm font-bold text-gray-900 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                        </svg>
+                        صور تفاصيل: {{ $project->title }}
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-0.5">الصور تظهر في صفحة تفاصيل المشروع — كل صورة لها عنوان ونص</p>
+                </div>
+                <a href="{{ route('projects.show', $project) }}" target="_blank"
+                   class="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                    معاينة الصفحة
+                </a>
+            </div>
+
+            <div class="p-5 space-y-5">
+
+                {{-- Existing Images --}}
+                @if($project->images->isNotEmpty())
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                    @foreach($project->images as $img)
+                    <div class="group relative bg-gray-50 rounded-xl overflow-hidden border border-gray-100">
+                        <div class="aspect-video overflow-hidden">
+                            <img src="{{ asset($img->image) }}" alt="{{ $img->title ?? '' }}"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-2.5 space-y-1">
+                            @if($img->title)
+                                <p class="text-xs font-semibold text-gray-800 line-clamp-1">{{ $img->title }}</p>
+                            @endif
+                            @if($img->description)
+                                <p class="text-xs text-gray-400 line-clamp-2">{{ $img->description }}</p>
+                            @endif
+                        </div>
+                        <form action="{{ route('admin.projects.images.destroy', $img->id) }}" method="POST"
+                              onsubmit="return confirm('حذف هذه الصورة؟')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="absolute top-2 left-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                    @endforeach
+                </div>
+                @else
+                <p class="text-xs text-gray-400 py-2">لا توجد صور مضافة لهذا المشروع بعد.</p>
+                @endif
+
+                {{-- Add Image Button + Collapsible Form --}}
+                <div>
+                    <button type="button"
+                            onclick="toggleAddImageForm({{ $project->id }})"
+                            class="flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        إضافة صورة جديدة
+                    </button>
+
+                    <form id="add-image-form-{{ $project->id }}"
+                          action="{{ route('admin.projects.images.store', $project->id) }}"
+                          method="POST"
+                          enctype="multipart/form-data"
+                          class="hidden mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-3">
+                        @csrf
+
+                        <div>
+                            <label class="block mb-1.5 text-xs font-semibold text-gray-700">
+                                الصورة <span class="text-red-500">*</span>
+                            </label>
+                            <input type="file" name="image" required
+                                accept="image/jpeg,image/png,image/jpg,image/gif,image/webp"
+                                class="w-full text-xs text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer file:ml-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+
+                        <div>
+                            <label class="block mb-1.5 text-xs font-semibold text-gray-700">عنوان الصورة</label>
+                            <input type="text" name="title"
+                                placeholder="مثال: واجهة النظام الرئيسية"
+                                class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-right">
+                        </div>
+
+                        <div>
+                            <label class="block mb-1.5 text-xs font-semibold text-gray-700">وصف الصورة</label>
+                            <textarea name="description" rows="2"
+                                placeholder="اشرح ما تُظهره هذه الصورة..."
+                                class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-right resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button type="submit"
+                                class="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
+                                رفع الصورة
+                            </button>
+                            <button type="button"
+                                onclick="toggleAddImageForm({{ $project->id }})"
+                                class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        @empty
+        @endforelse
+
     </div>
 </div>
+
 
 {{-- =================== MODAL: Add / Edit Project =================== --}}
 <div
@@ -562,6 +682,12 @@
         document.getElementById('image-hint').classList.add('hidden');
         document.getElementById('modal-title').textContent = 'إضافة مشروع جديد';
     });
+
+    // ===== Toggle Add Image Form =====
+    function toggleAddImageForm(projectId) {
+        const form = document.getElementById('add-image-form-' + projectId);
+        form.classList.toggle('hidden');
+    }
 </script>
 
 </body>

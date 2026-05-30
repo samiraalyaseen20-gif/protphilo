@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -135,5 +136,63 @@ class AdminProjectController extends Controller
         $project->delete();
 
         return redirect()->route('admin.dashboard')->with('success', 'تم حذف المشروع بنجاح!');
+    }
+
+    /**
+     * Add a new image to a project.
+     */
+    public function storeImage(Request $request, Project $project)
+    {
+        $request->validate([
+            'image'       => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4096',
+            'title'       => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ], [
+            'image.required' => 'يرجى اختيار صورة.',
+            'image.image'    => 'الملف يجب أن يكون صورة.',
+            'image.max'      => 'الحد الأقصى لحجم الصورة هو 4 ميجابايت.',
+        ]);
+
+        $file     = $request->file('image');
+        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+        $destinationPath = public_path('uploads/projects');
+        if (!File::isDirectory($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true, true);
+        }
+
+        $file->move($destinationPath, $filename);
+
+        ProjectImage::create([
+            'project_id'  => $project->id,
+            'image'       => 'uploads/projects/' . $filename,
+            'title'       => $request->title,
+            'description' => $request->description,
+            'order'       => ProjectImage::where('project_id', $project->id)->max('order') + 1,
+        ]);
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'تمت إضافة الصورة بنجاح!')
+            ->withFragment('project-' . $project->id);
+    }
+
+    /**
+     * Delete a single project image.
+     */
+    public function destroyImage(ProjectImage $projectImage)
+    {
+        if ($projectImage->image && !str_starts_with($projectImage->image, 'assets/')) {
+            $filePath = public_path($projectImage->image);
+            if (File::exists($filePath)) {
+                File::delete($filePath);
+            }
+        }
+
+        $projectId = $projectImage->project_id;
+        $projectImage->delete();
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'تم حذف الصورة بنجاح!')
+            ->withFragment('project-' . $projectId);
     }
 }

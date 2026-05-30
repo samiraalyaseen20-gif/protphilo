@@ -427,9 +427,10 @@
                                 $ordinalName = $ordinals[$loop->index] ?? $loop->iteration;
                             @endphp
                             <!-- Project Card {{ $loop->iteration }} -->
-                            <div class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between">
+                            <a href="{{ route('projects.show', $project) }}"
+                               class="mutmiz-card rounded-[2rem] overflow-hidden reveal-init flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 group">
                                 <div class="relative overflow-hidden aspect-video bg-surface">
-                                    <img src="{{ asset($project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                    <img src="{{ asset($project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                 </div>
                                 <div class="p-8 space-y-4">
                                     <span class="inline-block px-3.5 py-1.5 rounded-full bg-{{ $themeClass }}/10 text-{{ $themeClass }} text-xs font-bold {{ $glowClass }}">{{ $project->category }}</span>
@@ -440,9 +441,9 @@
                                 </div>
                                 <div class="px-8 pb-8 pt-4 border-t border-primary/5 flex justify-between items-center text-xs text-on-surface">
                                     <span>{{ $project->year }}</span>
-                                    <span class="flex items-center gap-1 font-bold text-{{ $themeClass }}">المشروع {{ $ordinalName }} <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
+                                    <span class="flex items-center gap-1 font-bold text-{{ $themeClass }}">عرض التفاصيل <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span></span>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
                     @else
                         <!-- Project Card 1 (Fallback) -->

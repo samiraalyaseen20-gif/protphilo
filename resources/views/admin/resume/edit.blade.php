@@ -396,7 +396,7 @@
                                     required
                                     class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-right"
                                 >
-                                    <option value="clinical_suite">طبي (clinical_suite)</option>
+                                    <option value="medical_services">طبي (medical_services)</option>
                                     <option value="computer">حاسوب وأنظمة (computer)</option>
                                     <option value="construction">هندسة وصيانة (construction)</option>
                                     <option value="palette">تصميم وكرافيك (palette)</option>
@@ -534,7 +534,7 @@
                                                     <div>
                                                         <label class="block mb-1 text-xs font-semibold text-gray-700">الأيقونة <span class="text-red-500">*</span></label>
                                                         <select name="icon" required class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-right">
-                                                            <option value="clinical_suite" {{ $exp->icon == 'clinical_suite' ? 'selected' : '' }}>طبي (clinical_suite)</option>
+                                                            <option value="medical_services" {{ $exp->icon == 'medical_services' || $exp->icon == 'clinical_suite' ? 'selected' : '' }}>طبي (medical_services)</option>
                                                             <option value="computer" {{ $exp->icon == 'computer' ? 'selected' : '' }}>حاسوب وأنظمة (computer)</option>
                                                             <option value="construction" {{ $exp->icon == 'construction' ? 'selected' : '' }}>هندسة وصيانة (construction)</option>
                                                             <option value="palette" {{ $exp->icon == 'palette' ? 'selected' : '' }}>تصميم وكرافيك (palette)</option>

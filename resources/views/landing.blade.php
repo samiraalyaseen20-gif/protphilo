@@ -161,7 +161,7 @@
                             <div class="relative flex flex-col md:flex-row {{ $isEven ? '' : 'md:flex-row-reverse' }} items-center md:justify-between reveal-init">
                                 <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
                                 <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white {{ $glowClass }} border-4 border-[#fff9fb] z-10">
-                                    <span class="material-symbols-outlined text-sm font-bold">{{ $exp->icon }}</span>
+                                    <span class="material-symbols-outlined text-sm font-bold">{{ $exp->icon == 'clinical_suite' ? 'medical_services' : $exp->icon }}</span>
                                 </div>
                                 <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
                                     <div class="text-{{ $colorClass }} font-black text-xl mb-2">{{ $exp->year_range }}</div>
@@ -180,7 +180,7 @@
                         <div class="relative flex flex-col md:flex-row items-center md:justify-between reveal-init">
                             <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
                             <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
-                                <span class="material-symbols-outlined text-sm font-bold font-black">clinical_suite</span>
+                                <span class="material-symbols-outlined text-sm font-bold font-black">medical_services</span>
                             </div>
                             <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
                                 <div class="text-primary font-black text-xl mb-2">٢٠٢٥ - حتى الآن</div>

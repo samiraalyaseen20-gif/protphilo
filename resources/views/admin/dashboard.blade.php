@@ -5,544 +5,555 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم | إدارة المشاريع</title>
 
-    <!-- Cairo Font -->
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
     <!-- Flowbite CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 
     <style>
         * { font-family: 'Cairo', sans-serif !important; }
-
-        /* Fix Flowbite RTL sidebar position */
-        #logo-sidebar {
-            right: 0;
-            left: auto;
-            border-left: 1px solid #e5e7eb;
-            border-right: none;
-            transform: translateX(100%); /* hidden by default (mobile) */
-            transition: transform 0.3s ease;
+        
+        .brand-gradient {
+            background: linear-gradient(135deg, #ff3366 0%, #e11d48 100%);
+        }
+        .brand-text {
+            color: #ff3366;
         }
 
-        /* Show sidebar on desktop (640px+) */
-        @media (min-width: 640px) {
+        /* Sidebar Off-canvas transition for RTL */
+        #logo-sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Fix main content padding on desktop */
+        @media (min-width: 1024px) {
+            #main-content {
+                padding-right: 17.5rem;
+            }
             #logo-sidebar {
                 transform: translateX(0) !important;
             }
         }
-
-        /* Fix main content margin for RTL */
-        @media (min-width: 640px) {
-            #main-content { margin-right: 16rem; margin-left: 0; }
-        }
-
-        /* Sidebar link active style */
-        .sidebar-link-active {
-            background-color: #eff6ff;
-            color: #1d4ed8;
-        }
-
-        /* Fix table direction */
-        table { text-align: right; }
-        th, td { text-align: right !important; }
     </style>
 </head>
 
-<body class="bg-gray-50 antialiased">
+<body class="bg-slate-50/70 antialiased min-h-screen text-slate-800">
 
-{{-- =================== TOP NAVBAR =================== --}}
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
-    <div class="px-4 py-3 lg:px-6">
-        <div class="flex items-center justify-between">
+    {{-- Mobile Sidebar Overlay Backdrop --}}
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden" onclick="closeSidebar()"></div>
 
-            {{-- Right side: Toggle + Logo --}}
-            <div class="flex items-center gap-3">
-                {{-- Sidebar Toggle Button (mobile) --}}
-                <button
-                    id="sidebar-toggle"
-                    type="button"
-                    class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                    aria-controls="logo-sidebar"
-                    aria-expanded="false"
-                >
-                    <span class="sr-only">فتح القائمة</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+    {{-- =================== TOP NAVBAR =================== --}}
+    <header class="fixed top-0 z-30 w-full bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+        <div class="px-4 py-3 lg:px-6">
+            <div class="flex items-center justify-between">
 
-                {{-- Logo --}}
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                        </svg>
+                {{-- Right: Mobile Hamburger + Logo --}}
+                <div class="flex items-center gap-3">
+                    <button
+                        id="sidebar-toggle"
+                        type="button"
+                        onclick="toggleSidebar()"
+                        class="inline-flex items-center p-2 text-slate-600 rounded-xl lg:hidden hover:bg-slate-100 focus:outline-none active:scale-95 transition-all"
+                        aria-label="القائمة"
+                    >
+                        <span class="material-symbols-outlined text-2xl">menu</span>
+                    </button>
+
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 brand-gradient rounded-xl flex items-center justify-center text-white shadow-md shadow-rose-500/20">
+                            <span class="material-symbols-outlined text-xl font-bold">dashboard</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-base font-black text-slate-900 leading-tight">لوحة الإدارة</span>
+                            <span class="text-[10px] text-slate-400 font-semibold">المهندسة سميرة علي</span>
+                        </div>
+                    </a>
+                </div>
+
+                {{-- Left: Website link + User Dropdown --}}
+                <div class="flex items-center gap-3">
+                    <a href="/" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-rose-50 hover:text-rose-600 rounded-xl transition-all">
+                        <span class="material-symbols-outlined text-base">open_in_new</span>
+                        معاينة الموقع
+                    </a>
+
+                    {{-- Admin Profile Dropdown --}}
+                    <button
+                        type="button"
+                        id="user-menu-btn"
+                        data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom-end"
+                        class="flex items-center gap-2 p-1 rounded-full hover:bg-slate-100 transition-all focus:outline-none"
+                    >
+                        <div class="w-9 h-9 rounded-full brand-gradient flex items-center justify-center text-white font-black text-sm shadow-sm">
+                            س
+                        </div>
+                        <span class="material-symbols-outlined text-slate-400 text-sm hidden sm:block">expand_more</span>
+                    </button>
+
+                    {{-- Dropdown Popup --}}
+                    <div id="user-dropdown" class="z-50 hidden my-2 min-w-48 text-right bg-white divide-y divide-slate-100 rounded-2xl shadow-xl border border-slate-100">
+                        <div class="px-4 py-3">
+                            <p class="text-xs font-bold text-slate-900">مشرف النظام</p>
+                            <p class="text-[11px] text-slate-400 truncate">Samiraalyaseen20@gmail.com</p>
+                        </div>
+                        <ul class="py-1 text-xs font-semibold text-slate-700">
+                            <li>
+                                <a href="/" target="_blank" class="flex items-center gap-2 px-4 py-2.5 hover:bg-slate-50">
+                                    <span class="material-symbols-outlined text-base text-slate-400">home</span>
+                                    زيارة الموقع العام
+                                </a>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="w-full flex items-center gap-2 px-4 py-2.5 text-rose-600 hover:bg-rose-50 font-bold">
+                                        <span class="material-symbols-outlined text-base text-rose-500">logout</span>
+                                        تسجيل الخروج
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
-                    <span class="text-xl font-bold text-gray-900 whitespace-nowrap">لوحة الإدارة</span>
-                </a>
+                </div>
+
             </div>
+        </div>
+    </header>
 
-            {{-- Left side: User dropdown --}}
-            <div class="flex items-center gap-3">
-                {{-- View Site Link --}}
-                <a href="/" target="_blank" class="hidden sm:flex items-center gap-1.5 text-sm text-gray-500 hover:text-blue-600 transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                    </svg>
-                    الموقع
-                </a>
-
-                {{-- User Avatar + Dropdown --}}
-                <button
-                    type="button"
-                    id="user-menu-btn"
-                    class="flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300"
-                    data-dropdown-toggle="user-dropdown"
-                    data-dropdown-placement="bottom"
-                >
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-sm">م</div>
-                    <svg class="w-4 h-4 text-gray-400 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-
-                {{-- Dropdown Menu --}}
-                <div id="user-dropdown" class="z-50 hidden my-4 min-w-48 text-base list-none bg-white divide-y divide-gray-100 rounded-xl shadow-lg border border-gray-100">
-                    <div class="px-4 py-3">
-                        <p class="text-sm font-semibold text-gray-900">مشرف النظام</p>
-                        <p class="text-xs text-gray-500 truncate">admin@smira.com</p>
-                    </div>
-                    <ul class="py-2">
+    {{-- =================== SIDEBAR DRAWER =================== --}}
+    <aside
+        id="logo-sidebar"
+        class="fixed top-0 right-0 z-40 w-68 h-screen pt-16 bg-white border-l border-slate-200/80 shadow-2xl lg:shadow-none translate-x-full lg:translate-x-0"
+        aria-label="Sidebar"
+    >
+        <div class="h-full flex flex-col justify-between px-4 py-6 overflow-y-auto">
+            
+            <nav class="space-y-6">
+                <div>
+                    <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest px-3 mb-3">القائمة الرئيسية</p>
+                    <ul class="space-y-1.5">
                         <li>
-                            <a href="/" target="_blank" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                                </svg>
-                                معاينة الموقع
+                            <a href="{{ route('admin.dashboard') }}"
+                               class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-xs font-bold bg-rose-50 text-rose-600 border border-rose-100 shadow-xs">
+                                <span class="material-symbols-outlined text-xl">folder_special</span>
+                                <span>إدارة المشاريع</span>
                             </a>
                         </li>
                         <li>
-                            <form action="{{ route('admin.logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-                                    </svg>
-                                    تسجيل الخروج
-                                </button>
-                            </form>
+                            <a href="{{ route('admin.resume.edit') }}"
+                               class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-xs font-bold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all">
+                                <span class="material-symbols-outlined text-xl text-slate-400">badge</span>
+                                <span>السيرة الذاتية والخبرات</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/" target="_blank"
+                               class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-xs font-bold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all">
+                                <span class="material-symbols-outlined text-xl text-slate-400">visibility</span>
+                                <span>معاينة الموقع العام</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
+            </nav>
+
+            {{-- Logout Button Footer --}}
+            <div class="pt-4 border-t border-slate-100">
+                <form action="{{ route('admin.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit"
+                        class="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-2xl text-xs font-bold text-rose-600 bg-rose-50/60 hover:bg-rose-100/80 transition-all">
+                        <span class="material-symbols-outlined text-lg">logout</span>
+                        تسجيل الخروج
+                    </button>
+                </form>
             </div>
 
         </div>
-    </div>
-</nav>
+    </aside>
 
-{{-- =================== SIDEBAR =================== --}}
-<aside
-    id="logo-sidebar"
-    class="fixed top-0 z-40 w-64 h-screen pt-16 transition-transform duration-300 translate-x-full sm:translate-x-0 bg-white border-l border-gray-200"
-    aria-label="Sidebar"
->
-    <div class="h-full flex flex-col px-4 py-5 overflow-y-auto">
+    {{-- =================== MAIN CONTENT AREA =================== --}}
+    <main id="main-content" class="pt-20 pb-16 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
-        {{-- Navigation --}}
-        <nav class="flex-1">
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">القائمة</p>
-            <ul class="space-y-1">
-                <li>
-                    <a href="{{ route('admin.dashboard') }}"
-                       class="sidebar-link-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors">
-                        <svg class="w-5 h-5 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                        </svg>
-                        <span>إدارة المشاريع</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.resume.edit') }}"
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors">
-                        <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                        <span>السيرة الذاتية</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/" target="_blank"
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors">
-                        <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                        </svg>
-                        <span>معاينة الموقع</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        {{-- Bottom logout --}}
-        <div class="border-t border-gray-100 pt-4 mt-4">
-            <form action="{{ route('admin.logout') }}" method="POST">
-                @csrf
-                <button type="submit"
-                    class="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
-                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-                    </svg>
-                    تسجيل الخروج
-                </button>
-            </form>
-        </div>
-
-    </div>
-</aside>
-
-{{-- =================== MAIN CONTENT =================== --}}
-<div id="main-content" class="pt-16 min-h-screen">
-    <div class="p-5 space-y-6">
-
-        {{-- Page Header --}}
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-900">إدارة المشاريع</h1>
-                <p class="text-sm text-gray-500 mt-0.5">تحكم بمحتوى معرض الأعمال الظاهر في الصفحة الرئيسية</p>
-            </div>
-            <button
-                data-modal-target="project-modal"
-                data-modal-toggle="project-modal"
-                id="open-add-modal-btn"
-                type="button"
-                class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none transition-colors shadow-sm whitespace-nowrap"
-            >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                </svg>
-                إضافة مشروع
-            </button>
-        </div>
-
-        {{-- Alerts --}}
-        @if (session('success'))
-            <div id="success-alert" class="flex items-center gap-3 p-4 text-green-800 bg-green-50 border border-green-200 rounded-xl" role="alert">
-                <svg class="w-5 h-5 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <p class="text-sm font-medium flex-1">{{ session('success') }}</p>
-                <button type="button" onclick="document.getElementById('success-alert').remove()" class="text-green-500 hover:text-green-700">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="flex items-start gap-3 p-4 text-red-800 bg-red-50 border border-red-200 rounded-xl" role="alert">
-                <svg class="w-5 h-5 shrink-0 text-red-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                </svg>
-                <ul class="text-sm font-medium space-y-1 flex-1">
-                    @foreach ($errors->all() as $error)
-                        <li>• {{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        {{-- Stats Cards --}}
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">إجمالي المشاريع</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-1">{{ $projects->count() }}</p>
+            {{-- Header Title & Action Button --}}
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-xs">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="w-2.5 h-2.5 rounded-full brand-gradient"></span>
+                        <h1 class="text-xl sm:text-2xl font-black text-slate-900">إدارة معرض المشاريع</h1>
                     </div>
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
-                        </svg>
-                    </div>
+                    <p class="text-xs text-slate-500 font-semibold">إضافة وتعديل المشاريع الظاهرة في الواجهة الرئيسية للموقع</p>
                 </div>
-            </div>
-
-            <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">التصنيفات</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-1">{{ $projects->pluck('category')->unique()->count() }}</p>
-                    </div>
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                        <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">حالة النظام</p>
-                        <p class="text-xl font-bold text-green-600 mt-1">يعمل بشكل طبيعي</p>
-                    </div>
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                        <span class="w-4 h-4 bg-green-500 rounded-full animate-pulse block"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- Projects Table --}}
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="px-5 py-4 border-b border-gray-100">
-                <h2 class="text-base font-semibold text-gray-900">قائمة المشاريع</h2>
-                <p class="text-xs text-gray-400 mt-0.5">جميع المشاريع المضافة في معرض الأعمال</p>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="bg-gray-50 border-b border-gray-100">
-                            <th class="px-5 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">الصورة</th>
-                            <th class="px-5 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">المشروع</th>
-                            <th class="px-5 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">التصنيف</th>
-                            <th class="px-5 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">السنة</th>
-                            <th class="px-5 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-50">
-                        @forelse ($projects as $project)
-                            <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-5 py-4">
-                                    <img
-                                        src="{{ asset($project->image) }}"
-                                        alt="{{ $project->title }}"
-                                        class="w-16 h-12 rounded-lg object-cover border border-gray-100"
-                                        onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2248%22><rect width=%2264%22 height=%2248%22 fill=%22%23e5e7eb%22/></svg>'"
-                                    >
-                                </td>
-                                <td class="px-5 py-4">
-                                    <p class="font-semibold text-gray-900 line-clamp-1">{{ $project->title }}</p>
-                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-1 max-w-xs">{{ $project->description }}</p>
-                                </td>
-                                <td class="px-5 py-4 hidden md:table-cell">
-                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
-                                        {{ $project->category }}
-                                    </span>
-                                </td>
-                                <td class="px-5 py-4 text-gray-500 text-sm hidden sm:table-cell">{{ $project->year }}</td>
-                                <td class="px-5 py-4">
-                                    <div class="flex items-center justify-center gap-3">
-                                        <a
-                                            href="{{ route('admin.projects.edit', $project->id) }}"
-                                            class="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline transition-colors"
-                                        >تعديل وإدارة</a>
-
-                                        <span class="text-gray-200">|</span>
-
-                                        <form
-                                            action="{{ route('admin.projects.destroy', $project->id) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('هل أنت متأكد من حذف هذا المشروع؟')"
-                                        >
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-sm font-medium text-red-500 hover:text-red-700 hover:underline transition-colors">حذف</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="px-5 py-16 text-center">
-                                    <div class="flex flex-col items-center gap-3">
-                                        <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center">
-                                            <svg class="w-7 h-7 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
-                                            </svg>
-                                        </div>
-                                        <p class="text-gray-400 font-medium">لا توجد مشاريع مضافة بعد</p>
-                                        <p class="text-xs text-gray-300">اضغط "إضافة مشروع" للبدء</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        {{-- Project images and details managed in separate pages --}}
-
-    </div>
-</div>
-
-
-{{-- =================== MODAL: Add / Edit Project =================== --}}
-<div
-    id="project-modal"
-    tabindex="-1"
-    aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/40 backdrop-blur-sm"
->
-    <div class="relative w-full max-w-2xl max-h-full p-4">
-        <div class="relative bg-white rounded-2xl shadow-xl">
-
-            {{-- Modal Header --}}
-            <div class="flex items-center justify-between p-5 border-b border-gray-100">
-                <h3 id="modal-title" class="text-lg font-bold text-gray-900">إضافة مشروع جديد</h3>
+                
                 <button
+                    data-modal-target="project-modal"
+                    data-modal-toggle="project-modal"
+                    id="open-add-modal-btn"
                     type="button"
-                    data-modal-hide="project-modal"
-                    class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-black text-white brand-gradient rounded-2xl hover:opacity-90 active:scale-95 transition-all shadow-md shadow-rose-500/20 whitespace-nowrap"
                 >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
+                    <span class="material-symbols-outlined text-lg">add_circle</span>
+                    إضافة مشروع جديد
                 </button>
             </div>
 
-            {{-- Modal Body --}}
-            <form
-                id="project-form"
-                action="{{ route('admin.projects.store') }}"
-                method="POST"
-                enctype="multipart/form-data"
-                class="p-5 space-y-4"
-            >
-                @csrf
-                <div id="method-field"></div>
-
-                {{-- Title --}}
-                <div>
-                    <label for="f_title" class="block mb-1.5 text-sm font-medium text-gray-700">عنوان المشروع <span class="text-red-500">*</span></label>
-                    <input
-                        type="text"
-                        id="f_title"
-                        name="title"
-                        required
-                        placeholder="مثال: برنامج الإحصاء الطبي"
-                        class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
-                    >
+            {{-- Alerts --}}
+            @if (session('success'))
+                <div id="success-alert" class="flex items-center gap-3 p-4 text-emerald-800 bg-emerald-50 border border-emerald-200/80 rounded-2xl shadow-xs" role="alert">
+                    <span class="material-symbols-outlined text-emerald-600 text-xl">check_circle</span>
+                    <p class="text-xs font-bold flex-1">{{ session('success') }}</p>
+                    <button type="button" onclick="document.getElementById('success-alert').remove()" class="text-emerald-500 hover:text-emerald-700">
+                        <span class="material-symbols-outlined text-lg">close</span>
+                    </button>
                 </div>
+            @endif
 
-                {{-- Category + Year --}}
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            @if ($errors->any())
+                <div class="flex items-start gap-3 p-4 text-rose-800 bg-rose-50 border border-rose-200/80 rounded-2xl shadow-xs" role="alert">
+                    <span class="material-symbols-outlined text-rose-600 text-xl mt-0.5">error</span>
+                    <ul class="text-xs font-bold space-y-1 flex-1">
+                        @foreach ($errors->all() as $error)
+                            <li>• {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            {{-- Stat Cards --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs flex items-center justify-between">
                     <div>
-                        <label for="f_category" class="block mb-1.5 text-sm font-medium text-gray-700">التصنيف <span class="text-red-500">*</span></label>
-                        <input
-                            type="text"
-                            id="f_category"
-                            name="category"
-                            required
-                            placeholder="مثال: أنظمة طبية"
-                            class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
-                        >
+                        <p class="text-xs font-bold text-slate-400">إجمالي المشاريع</p>
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">{{ $projects->count() }}</p>
                     </div>
-                    <div>
-                        <label for="f_year" class="block mb-1.5 text-sm font-medium text-gray-700">سنة الإنجاز <span class="text-red-500">*</span></label>
-                        <input
-                            type="text"
-                            id="f_year"
-                            name="year"
-                            required
-                            placeholder="مثال: ٢٠٢٥ م"
-                            class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
-                        >
+                    <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl font-bold">folder</span>
                     </div>
                 </div>
 
-                {{-- Image --}}
-                <div>
-                    <label for="f_image" class="block mb-1.5 text-sm font-medium text-gray-700">
-                        صورة المشروع <span id="image-required-mark" class="text-red-500">*</span>
-                    </label>
-                    <input
-                        type="file"
-                        id="f_image"
-                        name="image"
-                        accept="image/jpeg,image/png,image/jpg,image/gif,image/webp"
-                        class="w-full text-sm text-gray-500 bg-gray-50 border border-gray-300 rounded-xl cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                    <p id="image-hint" class="hidden mt-1.5 text-xs text-gray-400">اتركه فارغاً للاحتفاظ بالصورة الحالية.</p>
+                <div class="bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold text-slate-400">التصنيفات المعتمدة</p>
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">{{ $projects->pluck('category')->unique()->count() }}</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl font-bold">category</span>
+                    </div>
                 </div>
 
-                {{-- Description --}}
-                <div>
-                    <label for="f_description" class="block mb-1.5 text-sm font-medium text-gray-700">وصف المشروع <span class="text-red-500">*</span></label>
-                    <textarea
-                        id="f_description"
-                        name="description"
-                        rows="4"
-                        required
-                        placeholder="اكتب وصفاً مختصراً للمشروع..."
-                        class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right resize-none"
-                    ></textarea>
+                <div class="bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold text-slate-400">حالة النظام</p>
+                        <p class="text-sm font-black text-emerald-600 mt-1.5 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            يعمل ومحدث
+                        </p>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl font-bold">verified</span>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Projects Content Container (Responsive: Table on Desktop, Cards on Mobile) --}}
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                        <h2 class="text-sm font-black text-slate-900">المشاريع المضافة ({{ $projects->count() }})</h2>
+                        <p class="text-[11px] text-slate-400 font-semibold">انقر على تعديل لإدارة تفاصيل وصور كل مشروع</p>
+                    </div>
                 </div>
 
-                {{-- Footer --}}
-                <div class="flex items-center justify-end gap-3 pt-2 border-t border-gray-100">
+                {{-- Desktop Table View (Visible on md+) --}}
+                <div class="hidden md:block overflow-x-auto">
+                    <table class="w-full text-right text-xs">
+                        <thead class="bg-slate-50 border-b border-slate-100 text-slate-400 font-bold uppercase">
+                            <tr>
+                                <th class="px-6 py-4">معاينة الصورة</th>
+                                <th class="px-6 py-4">اسم المشروع والوصف</th>
+                                <th class="px-6 py-4">التصنيف</th>
+                                <th class="px-6 py-4">سنة الإنجاز</th>
+                                <th class="px-6 py-4 text-center">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+                            @forelse ($projects as $project)
+                                <tr class="hover:bg-slate-50/80 transition-all">
+                                    <td class="px-6 py-4">
+                                        <img
+                                            src="{{ asset($project->image) }}"
+                                            alt="{{ $project->title }}"
+                                            class="w-16 h-12 rounded-xl object-cover border border-slate-200 shadow-xs"
+                                            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2248%22%3E%3Crect width=%2264%22 height=%2248%22 fill=%22%23f1f5f9%22/%3E%3C/svg%3E'"
+                                        >
+                                    </td>
+                                    <td class="px-6 py-4 max-w-xs">
+                                        <p class="font-black text-slate-900 text-sm leading-snug">{{ $project->title }}</p>
+                                        <p class="text-[11px] text-slate-400 mt-1 line-clamp-1 leading-relaxed">{{ $project->description }}</p>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-block px-3 py-1 rounded-full bg-rose-50 text-rose-600 font-bold text-[10px] border border-rose-100">
+                                            {{ $project->category }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 font-bold text-slate-600">{{ $project->year }}</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <a
+                                                href="{{ route('admin.projects.edit', $project->id) }}"
+                                                class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-700 hover:text-rose-600 font-bold transition-all flex items-center gap-1"
+                                            >
+                                                <span class="material-symbols-outlined text-base">edit</span>
+                                                تعديل
+                                            </a>
+
+                                            <form
+                                                action="{{ route('admin.projects.destroy', $project->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('هل أنت متأكد من حذف هذا المشروع؟')"
+                                            >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="p-1.5 rounded-xl hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition-all" title="حذف">
+                                                    <span class="material-symbols-outlined text-lg">delete</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="px-6 py-16 text-center text-slate-400">
+                                        <span class="material-symbols-outlined text-4xl mb-2">folder_off</span>
+                                        <p class="font-bold text-xs">لا توجد مشاريع مضافة حالياً</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                {{-- Mobile Card List View (Visible on <md) --}}
+                <div class="block md:hidden p-4 space-y-4">
+                    @forelse ($projects as $project)
+                        <div class="bg-slate-50/80 p-4 rounded-2xl border border-slate-200/80 space-y-3">
+                            <div class="flex items-start gap-3">
+                                <img
+                                    src="{{ asset($project->image) }}"
+                                    alt="{{ $project->title }}"
+                                    class="w-20 h-16 rounded-xl object-cover border border-slate-200 shadow-xs shrink-0"
+                                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2248%22%3E%3Crect width=%2264%22 height=%2248%22 fill=%22%23f1f5f9%22/%3E%3C/svg%3E'"
+                                >
+                                <div class="flex-1 min-w-0 space-y-1">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <span class="px-2 py-0.5 rounded-md bg-rose-100/80 text-rose-700 font-bold text-[9px]">
+                                            {{ $project->category }}
+                                        </span>
+                                        <span class="text-[10px] font-bold text-slate-400">{{ $project->year }}</span>
+                                    </div>
+                                    <h3 class="font-black text-slate-900 text-xs leading-snug truncate">{{ $project->title }}</h3>
+                                    <p class="text-[10px] text-slate-500 line-clamp-2 leading-relaxed">{{ $project->description }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-200/60">
+                                <a
+                                    href="{{ route('admin.projects.edit', $project->id) }}"
+                                    class="flex-1 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-rose-600 font-bold text-xs flex items-center justify-center gap-1 shadow-xs"
+                                >
+                                    <span class="material-symbols-outlined text-base">edit</span>
+                                    تعديل التفاصيل والصور
+                                </a>
+
+                                <form
+                                    action="{{ route('admin.projects.destroy', $project->id) }}"
+                                    method="POST"
+                                    onsubmit="return confirm('هل أنت متأكد من حذف هذا المشروع؟')"
+                                >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-rose-600 transition-all" title="حذف">
+                                        <span class="material-symbols-outlined text-base">delete</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="text-center py-12 text-slate-400">
+                            <span class="material-symbols-outlined text-4xl mb-2">folder_off</span>
+                            <p class="font-bold text-xs">لا توجد مشاريع مضافة حالياً</p>
+                        </div>
+                    @endforelse
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    {{-- =================== MODAL: Add Project =================== --}}
+    <div
+        id="project-modal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-slate-900/60 backdrop-blur-xs p-4"
+    >
+        <div class="relative w-full max-w-xl max-h-full">
+            <div class="relative bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+
+                {{-- Modal Header --}}
+                <div class="flex items-center justify-between p-5 border-b border-slate-100">
+                    <h3 id="modal-title" class="text-base font-black text-slate-900">إضافة مشروع جديد</h3>
                     <button
                         type="button"
                         data-modal-hide="project-modal"
-                        class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-colors"
-                    >إلغاء</button>
-                    <button
-                        type="submit"
-                        class="px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-colors"
-                    >حفظ المشروع</button>
+                        class="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-all"
+                    >
+                        <span class="material-symbols-outlined text-xl">close</span>
+                    </button>
                 </div>
-            </form>
 
+                {{-- Modal Body --}}
+                <form
+                    id="project-form"
+                    action="{{ route('admin.projects.store') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="p-5 space-y-4 text-right"
+                >
+                    @csrf
+                    <div id="method-field"></div>
+
+                    {{-- Title --}}
+                    <div>
+                        <label for="f_title" class="block mb-1 text-xs font-bold text-slate-700">عنوان المشروع <span class="text-rose-500">*</span></label>
+                        <input
+                            type="text"
+                            id="f_title"
+                            name="title"
+                            required
+                            placeholder="مثال: برنامج الإحصاء الطبي"
+                            class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 font-semibold"
+                        >
+                    </div>
+
+                    {{-- Category + Year --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="f_category" class="block mb-1 text-xs font-bold text-slate-700">التصنيف <span class="text-rose-500">*</span></label>
+                            <input
+                                type="text"
+                                id="f_category"
+                                name="category"
+                                required
+                                placeholder="مثال: أنظمة إحصائية طبية"
+                                class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 font-semibold"
+                            >
+                        </div>
+                        <div>
+                            <label for="f_year" class="block mb-1 text-xs font-bold text-slate-700">سنة الإنجاز <span class="text-rose-500">*</span></label>
+                            <input
+                                type="text"
+                                id="f_year"
+                                name="year"
+                                required
+                                placeholder="مثال: ٢٠٢٥ م"
+                                class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 font-semibold"
+                            >
+                        </div>
+                    </div>
+
+                    {{-- Image --}}
+                    <div>
+                        <label for="f_image" class="block mb-1 text-xs font-bold text-slate-700">
+                            صورة المشروع الرئيسية <span id="image-required-mark" class="text-rose-500">*</span>
+                        </label>
+                        <input
+                            type="file"
+                            id="f_image"
+                            name="image"
+                            accept="image/jpeg,image/png,image/jpg,image/gif,image/webp"
+                            class="w-full text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer file:ml-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-rose-50 file:text-rose-600 hover:file:bg-rose-100 p-2 focus:outline-none"
+                        >
+                    </div>
+
+                    {{-- Description --}}
+                    <div>
+                        <label for="f_description" class="block mb-1 text-xs font-bold text-slate-700">وصف المشروع <span class="text-rose-500">*</span></label>
+                        <textarea
+                            id="f_description"
+                            name="description"
+                            rows="4"
+                            required
+                            placeholder="اكتب وصفاً مختصراً للمشروع..."
+                            class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 font-semibold resize-none"
+                        ></textarea>
+                    </div>
+
+                    {{-- Footer --}}
+                    <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+                        <button
+                            type="button"
+                            data-modal-hide="project-modal"
+                            class="px-5 py-2.5 text-xs font-bold text-slate-600 bg-slate-100 rounded-xl hover:bg-slate-200 transition-all"
+                        >إلغاء</button>
+                        <button
+                            type="submit"
+                            class="px-6 py-2.5 text-xs font-black text-white brand-gradient rounded-xl hover:opacity-90 transition-all shadow-md shadow-rose-500/20"
+                        >حفظ المشروع</button>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
-</div>
 
-{{-- Mobile Overlay --}}
-<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-30 hidden sm:hidden" onclick="closeSidebar()"></div>
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
-{{-- Flowbite JS --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script>
+        // Off-canvas Sidebar drawer controls
+        const sidebar = document.getElementById('logo-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
 
-<script>
-    // ===== Sidebar Toggle (RTL) =====
-    const sidebar = document.getElementById('logo-sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    const toggleBtn = document.getElementById('sidebar-toggle');
-
-    function openSidebar() {
-        sidebar.classList.remove('translate-x-full');
-        sidebar.classList.add('translate-x-0');
-        overlay.classList.remove('hidden');
-    }
-
-    function closeSidebar() {
-        sidebar.classList.remove('translate-x-0');
-        sidebar.classList.add('translate-x-full');
-        overlay.classList.add('hidden');
-    }
-
-    toggleBtn.addEventListener('click', function () {
-        if (sidebar.classList.contains('translate-x-full')) {
-            openSidebar();
-        } else {
-            closeSidebar();
+        function toggleSidebar() {
+            if (sidebar.classList.contains('translate-x-full')) {
+                openSidebar();
+            } else {
+                closeSidebar();
+            }
         }
-    });
 
-    // ===== Modal: Reset when opening Add modal =====
-    document.getElementById('open-add-modal-btn').addEventListener('click', function () {
-        document.getElementById('project-form').action = "{{ route('admin.projects.store') }}";
-        document.getElementById('method-field').innerHTML = '';
-        document.getElementById('project-form').reset();
-        document.getElementById('f_image').required    = true;
-        document.getElementById('image-required-mark').style.display = 'inline';
-        document.getElementById('image-hint').classList.add('hidden');
-        document.getElementById('modal-title').textContent = 'إضافة مشروع جديد';
-    });
-</script>
+        function openSidebar() {
+            sidebar.classList.remove('translate-x-full');
+            sidebar.classList.add('translate-x-0');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100', 'pointer-events-auto');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        // Reset Add Modal
+        document.getElementById('open-add-modal-btn').addEventListener('click', function () {
+            document.getElementById('project-form').action = "{{ route('admin.projects.store') }}";
+            document.getElementById('method-field').innerHTML = '';
+            document.getElementById('project-form').reset();
+            document.getElementById('f_image').required = true;
+            document.getElementById('image-required-mark').style.display = 'inline';
+            document.getElementById('modal-title').textContent = 'إضافة مشروع جديد';
+        });
+    </script>
 
 </body>
 </html>

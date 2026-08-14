@@ -16,17 +16,13 @@
         body {
             font-family: 'Cairo', 'Outfit', sans-serif;
             background-color: #ffffff;
-            color: #0f172a;
-            overflow-x: hidden;
-        }
-
-        .mutmiz-hero-bg {
+            color: #0f1        .mutmiz-hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 850px;
-            background: radial-gradient(circle at 50% 30%, rgba(124, 58, 237, 0.04) 0%, rgba(255, 77, 128, 0.02) 40%, transparent 70%);
+            background: radial-gradient(circle at 50% 30%, rgba(255, 51, 102, 0.06) 0%, rgba(225, 29, 72, 0.02) 40%, transparent 70%);
             z-index: -2;
         }
 
@@ -68,17 +64,11 @@
                     
                     <!-- Right Column: Text (LTR left, RTL right) -->
                     <div class="lg:col-span-5 space-y-6 sm:space-y-8 text-center lg:text-right">
-                        <!-- Trustpilot Pill Badge -->
-                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f0ff] border border-primary/10 text-xs font-bold text-on-background">
-                            <span class="material-symbols-outlined text-green-500 font-black text-sm">star_rate</span>
-                            <span class="font-black text-primary">التقييم الأكاديمي والمهني</span>
-                            <span class="text-on-surface">مميز جداً ★</span>
-                        </div>
                         
                         <!-- Main Header -->
                         <h1 class="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight text-on-background font-display tracking-tight">
                             أصمم وأطور <br>
-                            <span class="text-primary glow-purple">الأنظمة الطبية الإدارية</span>
+                            <span class="text-primary glow-pink">الأنظمة الطبية الإدارية</span>
                         </h1>
                         
                         <!-- Description -->
@@ -86,21 +76,12 @@
                             المهندسة سميرة علي ياسين ال ياسين. أقدم حلولاً برمجية متكاملة تركز على أتمتة الأنظمة الإدارية، والأرشفة الإلكترونية الشاملة للبيانات الطبية، وتطوير قواعد البيانات والبرمجيات الإحصائية لتقليل الأخطاء ودعم اتخاذ القرار.
                         </p>
 
-                        <!-- Pink Button -->
-                        <div class="flex justify-center lg:justify-start">
-                            <a href="#contact" class="px-8 py-3.5 rounded-full bg-secondary text-white font-bold shadow-lg shadow-secondary/30 hover:scale-105 transition-all text-sm flex items-center gap-2">
-                                تواصل معي 
-                                <span class="material-symbols-outlined text-sm font-bold">arrow_left_alt</span>
-                            </a>
-                        </div>
-                   
-
                         <!-- 3. Subgrid for Floating Info cards: Academic Certificate & Software Skills -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-[700px] mt-4">
                             <!-- Academic Certificate Card -->
                             <div class="mutmiz-card p-5 rounded-2xl shadow-md border border-primary/10 space-y-4 text-right">
                                 <div class="flex items-center gap-3">
-                                    <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center glow-purple">
+                                    <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center glow-pink">
                                         <span class="material-symbols-outlined text-lg">school</span>
                                     </span>
                                     <h3 class="text-xs font-black text-on-background">الشهادة الأكاديمية</h3>
@@ -116,12 +97,12 @@
                                         @if(isset($resumeSettings) && !empty($resumeSettings->languages))
                                             @foreach($resumeSettings->languages_list as $langIdx => $lang)
                                                 @php
-                                                    $badgeClass = $langIdx % 2 === 0 ? 'bg-[#f1f0ff] border-primary/5 text-primary' : 'bg-[#fdf0f4] border-secondary/5 text-secondary';
+                                                    $badgeClass = $langIdx % 2 === 0 ? 'bg-[#fdf0f4] border-primary/5 text-primary' : 'bg-[#fdf0f4] border-secondary/5 text-secondary';
                                                 @endphp
                                                 <span class="px-2 py-0.5 rounded-full {{ $badgeClass }} border text-[9px] font-bold">{{ $lang }}</span>
                                             @endforeach
                                         @else
-                                            <span class="px-2 py-0.5 rounded-full bg-[#f1f0ff] border border-primary/5 text-[9px] font-bold text-primary">العربية (اللغة الأم)</span>
+                                            <span class="px-2 py-0.5 rounded-full bg-[#fdf0f4] border border-primary/5 text-[9px] font-bold text-primary">العربية (اللغة الأم)</span>
                                             <span class="px-2 py-0.5 rounded-full bg-[#fdf0f4] border border-secondary/5 text-[9px] font-bold text-secondary">الإنجليزية (مستوى متقدم)</span>
                                         @endif
                                     </div>
@@ -173,7 +154,7 @@
                         @foreach($experiences as $index => $exp)
                             @php
                                 $isEven = $index % 2 === 0;
-                                $glowClass = $isEven ? 'glow-pink' : 'glow-purple';
+                                $glowClass = $isEven ? 'glow-pink' : 'glow-pink';
                                 $colorClass = $isEven ? 'primary' : 'secondary';
                             @endphp
                             <!-- Experience {{ $index + 1 }} -->
@@ -217,7 +198,7 @@
                         <!-- Experience 2 (Fallback) -->
                         <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
                             <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-purple border-4 border-[#fff9fb] z-10">
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
                                 <span class="material-symbols-outlined text-sm font-bold">computer</span>
                             </div>
                             <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
@@ -227,7 +208,7 @@
                                 <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
                                     <li>إدارة وتنظيم جدول مواعيد حقن العين لمرضى العيون واستكمال استمارات اللجان.</li>
                                     <li>تطوير نظام إلكتروني لإدارة الحجوزات والبيانات الطبية لتقليل الأخطاء الإدارية وأتمتتها.</li>
-                                    <li>استخراج تقارير إحصائية شهرية وسنوية شاملة لحالات الحقن والمراجعات.</li>
+                                    <li>استخرج تقارير إحصائية شهرية وسنوية شاملة لحالات الحقن والمراجعات.</li>
                                     <li>تمت الترقية للإشراف الكامل على وحدة الحقن وإدارة كادر العمل اليومي.</li>
                                 </ul>
                             </div>
@@ -254,7 +235,7 @@
                         <!-- Experience 4 (Fallback) -->
                         <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
                             <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-purple border-4 border-[#fff9fb] z-10">
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
                                 <span class="material-symbols-outlined text-sm font-bold">palette</span>
                             </div>
                             <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
@@ -271,49 +252,6 @@
                 </div>
             </div>
         </section>
-
-
-
-        <!-- Violet Card Call to Action -->
-        <section class="py-32 text-right">
-            <div class="max-w-6xl mx-auto px-6 reveal-init">
-                <div class="hero-bottom-block rounded-[3rem] p-12 md:p-16 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
-                    
-                    <!-- Left visual: Phone Mockup inside banner -->
-                    <div class="relative w-64 flex justify-center">
-                        <div class="phone-mockup-container float-slow-1 shadow-2xl border-4 border-white/20" style="height: 380px; width: 220px; border-radius: 30px;">
-                            <div class="phone-notch" style="width: 80px; height: 14px;"></div>
-                            <div class="phone-screen bg-[#f8f7ff] p-4 flex flex-col justify-center space-y-4">
-                                <div class="bg-white p-3 rounded-xl border border-primary/5 shadow-sm space-y-2">
-                                    <span class="text-[8px] font-black px-1.5 py-0.5 rounded bg-primary/10 text-primary">تمت أتمتة النظام</span>
-                                    <div class="text-[10px] font-black text-right">إدارة الحجوزات الطبية</div>
-                                    <div class="w-full bg-[#f3f4f6] h-1 rounded-full overflow-hidden">
-                                        <div class="bg-primary h-full rounded-full" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right visual: Description and CTA button -->
-                    <div class="md:w-[60%] space-y-6">
-                        <h2 class="text-4xl font-black text-white leading-tight font-display">
-                            جاهزة لتنظيم وتطوير منشأتكِ الطبية؟ <br>
-                            لنبدأ العمل وبناء الأنظمة الإلكترونية
-                        </h2>
-                        <p class="text-white/80 text-sm leading-relaxed max-w-lg mx-auto md:mr-0">
-                            أصمم برمجيات وقواعد بيانات طبية متكاملة لتبسيط الحجوزات والعمليات الجراحية وإصدار مؤشرات الأداء للأطباء بدقة برمجية تامة.
-                        </p>
-                        <div class="pt-2">
-                            <a href="#contact" class="px-10 py-4 rounded-full bg-secondary text-white font-black text-base shadow-2xl hover:scale-105 hover:glow-pink inline-block transition-transform">
-                                تواصل معي الآن >
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-     
 
         <!-- Projects Section -->
         <section id="projects" class="py-32">

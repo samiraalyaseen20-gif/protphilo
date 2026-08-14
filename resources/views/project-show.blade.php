@@ -27,7 +27,7 @@
             left: 0;
             right: 0;
             height: 850px;
-            background: radial-gradient(circle at 50% 30%, rgba(124, 58, 237, 0.04) 0%, rgba(255, 77, 128, 0.02) 40%, transparent 70%);
+            background: radial-gradient(circle at 50% 30%, rgba(255, 51, 102, 0.06) 0%, rgba(225, 29, 72, 0.02) 40%, transparent 70%);
             z-index: -2;
         }
 
@@ -89,14 +89,14 @@
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(124, 58, 237, 0.08);
+            border: 1px solid rgba(255, 51, 102, 0.08);
         }
         .glowing-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glowing-card:hover {
-            box-shadow: 0 25px 50px -12px rgba(124, 58, 237, 0.12);
-            border-color: rgba(124, 58, 237, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(255, 51, 102, 0.12);
+            border-color: rgba(255, 51, 102, 0.2);
         }
 
         /* Mockup parent styling */

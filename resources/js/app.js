@@ -43,16 +43,16 @@ function initCustomCursor() {
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             dot.style.transform = 'translate(-50%, -50%) scale(1.8)';
-            dot.style.backgroundColor = '#ff4d80'; // Pink accent on hover
+            dot.style.backgroundColor = '#e11d48'; // Rose accent on hover
             outline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            outline.style.borderColor = '#7c3aed'; // Purple brand on hover
+            outline.style.borderColor = '#ff3366'; // Pink brand on hover
             outline.style.borderWidth = '2px';
         });
         el.addEventListener('mouseleave', () => {
             dot.style.transform = 'translate(-50%, -50%) scale(1)';
-            dot.style.backgroundColor = '#7c3aed'; // Back to purple
+            dot.style.backgroundColor = '#ff3366'; // Back to pink
             outline.style.transform = 'translate(-50%, -50%) scale(1)';
-            outline.style.borderColor = 'rgba(124, 58, 237, 0.4)';
+            outline.style.borderColor = 'rgba(255, 51, 102, 0.4)';
             outline.style.borderWidth = '1.5px';
         });
     });

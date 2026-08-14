@@ -152,34 +152,32 @@
         </section>
 
         <!-- Professional Experience Section (Timeline replacing English resume) -->
-        <section id="experience" class="py-32 relative bg-surface/30 text-right">
-            <div class="max-w-4xl mx-auto px-6">
-                <div class="text-center space-y-4 mb-24 reveal-init">
-                    <div class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4">الخبرات والمسيرة المهنية</div>
-                    <h2 class="text-4xl lg:text-5xl font-black text-on-background font-display tracking-tight">مسيرتي المهنية والخبرات</h2>
-                    <p class="text-xs text-on-surface max-w-md mx-auto">السيرة المهنية المفصلة للمهندسة سميرة علي ياسين في المؤسسات الطبية والدوائر الهندسية بكربلاء المقدسة.</p>
+        <section id="experience" class="py-24 sm:py-32 relative bg-slate-50/80 border-y border-slate-200/60 text-right">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center space-y-4 mb-20">
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-rose-50 text-rose-600 text-xs font-black uppercase tracking-[0.2em] border border-rose-200/60">الخبرات والمسيرة المهنية</div>
+                    <h2 class="text-3xl sm:text-5xl font-black text-slate-900 font-display tracking-tight">مسيرتي المهنية والخبرات</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 font-semibold max-w-lg mx-auto leading-relaxed">السيرة المهنية المفصلة للمهندسة سميرة علي ياسين في المؤسسات الطبية والدوائر الهندسية بكربلاء المقدسة.</p>
                 </div>
 
                 <!-- Vertical Timeline track -->
-                <div class="timeline-track space-y-12">
+                <div class="timeline-track space-y-10">
                     @if(isset($experiences) && $experiences->isNotEmpty())
                         @foreach($experiences as $index => $exp)
                             @php
                                 $isEven = $index % 2 === 0;
-                                $glowClass = $isEven ? 'glow-pink' : 'glow-pink';
-                                $colorClass = $isEven ? 'primary' : 'secondary';
                             @endphp
                             <!-- Experience {{ $index + 1 }} -->
-                            <div class="relative flex flex-col md:flex-row {{ $isEven ? '' : 'md:flex-row-reverse' }} items-center md:justify-between reveal-init">
-                                <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                                <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white {{ $glowClass }} border-4 border-[#fff9fb] z-10">
-                                    <span class="material-symbols-outlined text-sm font-bold">{{ $exp->icon == 'clinical_suite' ? 'medical_services' : $exp->icon }}</span>
+                            <div class="relative flex flex-col md:flex-row {{ $isEven ? '' : 'md:flex-row-reverse' }} items-center md:justify-between">
+                                <div class="w-full md:w-[46%] mb-6 md:mb-0"></div>
+                                <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-11 h-11 rounded-2xl brand-gradient items-center justify-center text-white shadow-md shadow-rose-500/20 border-4 border-white z-10">
+                                    <span class="material-symbols-outlined text-lg font-bold">{{ $exp->icon == 'clinical_suite' ? 'medical_services' : $exp->icon }}</span>
                                 </div>
-                                <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                                    <div class="text-{{ $colorClass }} font-black text-xl mb-2">{{ $exp->year_range }}</div>
-                                    <h3 class="text-lg font-black text-on-surface mb-2">{{ $exp->title }}</h3>
-                                    <div class="text-xs text-{{ $colorClass }} font-bold mb-3">{{ $exp->company }}</div>
-                                    <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                                <div class="w-full md:w-[46%] bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-slate-200/80 hover:border-rose-300 transition-all text-right">
+                                    <div class="inline-block px-3 py-1 bg-rose-50 text-rose-600 font-black text-xs sm:text-sm rounded-xl mb-2.5">{{ $exp->year_range }}</div>
+                                    <h3 class="text-base sm:text-xl font-black text-slate-900 mb-1 leading-snug">{{ $exp->title }}</h3>
+                                    <div class="text-xs sm:text-sm text-rose-600 font-bold mb-4">{{ $exp->company }}</div>
+                                    <ul class="text-xs sm:text-sm text-slate-700 font-semibold leading-relaxed space-y-2.5 list-disc pr-4 border-t border-slate-100 pt-3">
                                         @foreach($exp->responsibilities_list as $task)
                                             <li>{{ $task }}</li>
                                         @endforeach
@@ -189,16 +187,16 @@
                         @endforeach
                     @else
                         <!-- Experience 1 (Fallback) -->
-                        <div class="relative flex flex-col md:flex-row items-center md:justify-between reveal-init">
-                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
-                                <span class="material-symbols-outlined text-sm font-bold font-black">medical_services</span>
+                        <div class="relative flex flex-col md:flex-row items-center md:justify-between">
+                            <div class="w-full md:w-[46%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-11 h-11 rounded-2xl brand-gradient items-center justify-center text-white shadow-md shadow-rose-500/20 border-4 border-white z-10">
+                                <span class="material-symbols-outlined text-lg font-bold">medical_services</span>
                             </div>
-                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                                <div class="text-primary font-black text-xl mb-2">٢٠٢٥ - حتى الآن</div>
-                                <h3 class="text-lg font-black text-on-surface mb-2">مسؤولة الاحصاء الطبي</h3>
-                                <div class="text-xs text-primary font-bold mb-3">مركز السيدة زينب (ع) التخصصي للعيون</div>
-                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                            <div class="w-full md:w-[46%] bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-slate-200/80 hover:border-rose-300 transition-all text-right">
+                                <div class="inline-block px-3 py-1 bg-rose-50 text-rose-600 font-black text-xs sm:text-sm rounded-xl mb-2.5">٢٠٢٥ - حتى الآن</div>
+                                <h3 class="text-base sm:text-xl font-black text-slate-900 mb-1 leading-snug">مسؤولة الاحصاء الطبي</h3>
+                                <div class="text-xs sm:text-sm text-rose-600 font-bold mb-4">مركز السيدة زينب (ع) التخصصي للعيون</div>
+                                <ul class="text-xs sm:text-sm text-slate-700 font-semibold leading-relaxed space-y-2.5 list-disc pr-4 border-t border-slate-100 pt-3">
                                     <li>تصميم وتطوير أنظمة إحصائية لمتابعة أعداد مراجعي المرضى لكل طبيب.</li>
                                     <li>إعداد تقارير تحليلية دورية لقياس حجم العمل ومؤشرات أداء الأطباء.</li>
                                     <li>إنشاء نظام إحصائي للمختبر يسجل عدد المراجعين وأنواع التحاليل المنجزة.</li>
@@ -208,16 +206,16 @@
                         </div>
 
                         <!-- Experience 2 (Fallback) -->
-                        <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
-                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
-                                <span class="material-symbols-outlined text-sm font-bold">computer</span>
+                        <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between">
+                            <div class="w-full md:w-[46%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-11 h-11 rounded-2xl brand-gradient items-center justify-center text-white shadow-md shadow-rose-500/20 border-4 border-white z-10">
+                                <span class="material-symbols-outlined text-lg font-bold">computer</span>
                             </div>
-                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                                <div class="text-secondary font-black text-xl mb-2">٢٠٢٤</div>
-                                <h3 class="text-lg font-black text-on-surface mb-2">مسؤولة حاسبة الحجوزات ومطورة أنظمة إدارية</h3>
-                                <div class="text-xs text-secondary font-bold mb-3">مركز السيدة زينب (ع) التخصصي للعيون</div>
-                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                            <div class="w-full md:w-[46%] bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-slate-200/80 hover:border-rose-300 transition-all text-right">
+                                <div class="inline-block px-3 py-1 bg-rose-50 text-rose-600 font-black text-xs sm:text-sm rounded-xl mb-2.5">٢٠٢٤</div>
+                                <h3 class="text-base sm:text-xl font-black text-slate-900 mb-1 leading-snug">مسؤولة حاسبة الحجوزات ومطورة أنظمة إدارية</h3>
+                                <div class="text-xs sm:text-sm text-rose-600 font-bold mb-4">مركز السيدة زينب (ع) التخصصي للعيون</div>
+                                <ul class="text-xs sm:text-sm text-slate-700 font-semibold leading-relaxed space-y-2.5 list-disc pr-4 border-t border-slate-100 pt-3">
                                     <li>إدارة وتنظيم جدول مواعيد حقن العين لمرضى العيون واستكمال استمارات اللجان.</li>
                                     <li>تطوير نظام إلكتروني لإدارة الحجوزات والبيانات الطبية لتقليل الأخطاء الإدارية وأتمتتها.</li>
                                     <li>استخرج تقارير إحصائية شهرية وسنوية شاملة لحالات الحقن والمراجعات.</li>
@@ -227,16 +225,16 @@
                         </div>
 
                         <!-- Experience 3 (Fallback) -->
-                        <div class="relative flex flex-col md:flex-row items-center md:justify-between reveal-init">
-                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
-                                <span class="material-symbols-outlined text-sm font-bold">construction</span>
+                        <div class="relative flex flex-col md:flex-row items-center md:justify-between">
+                            <div class="w-full md:w-[46%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-11 h-11 rounded-2xl brand-gradient items-center justify-center text-white shadow-md shadow-rose-500/20 border-4 border-white z-10">
+                                <span class="material-symbols-outlined text-lg font-bold">construction</span>
                             </div>
-                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                                <div class="text-primary font-black text-xl mb-2">٢٠٢٤</div>
-                                <h3 class="text-lg font-black text-on-surface mb-2">مهندسة اجهزة طبية</h3>
-                                <div class="text-xs text-primary font-bold mb-3">دائرة صحة كربلاء - قسم المشاريع والخدمات الهندسية</div>
-                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                            <div class="w-full md:w-[46%] bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-slate-200/80 hover:border-rose-300 transition-all text-right">
+                                <div class="inline-block px-3 py-1 bg-rose-50 text-rose-600 font-black text-xs sm:text-sm rounded-xl mb-2.5">٢٠٢٤</div>
+                                <h3 class="text-base sm:text-xl font-black text-slate-900 mb-1 leading-snug">مهندسة اجهزة طبية</h3>
+                                <div class="text-xs sm:text-sm text-rose-600 font-bold mb-4">دائرة صحة كربلاء - قسم المشاريع والخدمات الهندسية</div>
+                                <ul class="text-xs sm:text-sm text-slate-700 font-semibold leading-relaxed space-y-2.5 list-disc pr-4 border-t border-slate-100 pt-3">
                                     <li>إعداد وصياغة الكتب والمخاطبات الرسمية الموجهة للدوائر الطبية والمؤسسات ذات العلاقة.</li>
                                     <li>تنظيم كتب الاعتذار والموافقات الرسمية الخاصة بتجهيز الأجهزة والمعدات الطبية بكربلاء.</li>
                                     <li>متابعة الموافقات الرسمية والمطابقة الفنية والتقنية للمواصفات القياسية.</li>
@@ -245,16 +243,16 @@
                         </div>
 
                         <!-- Experience 4 (Fallback) -->
-                        <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between reveal-init">
-                            <div class="w-full md:w-[45%] mb-6 md:mb-0"></div>
-                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary items-center justify-center text-white glow-pink border-4 border-[#fff9fb] z-10">
-                                <span class="material-symbols-outlined text-sm font-bold">palette</span>
+                        <div class="relative flex flex-col md:flex-row-reverse items-center md:justify-between">
+                            <div class="w-full md:w-[46%] mb-6 md:mb-0"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 md:flex hidden w-11 h-11 rounded-2xl brand-gradient items-center justify-center text-white shadow-md shadow-rose-500/20 border-4 border-white z-10">
+                                <span class="material-symbols-outlined text-lg font-bold">palette</span>
                             </div>
-                            <div class="w-full md:w-[45%] glass-panel glowing-card p-8 rounded-3xl shadow-lg">
-                                <div class="text-secondary font-black text-xl mb-2">٢٠٢٢ - ٢٠٢٤</div>
-                                <h3 class="text-lg font-black text-on-surface mb-2">مصممة كرافيك</h3>
-                                <div class="text-xs text-secondary font-bold mb-3">العتبة الحسينية المقدسة - قسم رعاية الطفولة (مركز الحوراء زينب)</div>
-                                <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4">
+                            <div class="w-full md:w-[46%] bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-slate-200/80 hover:border-rose-300 transition-all text-right">
+                                <div class="inline-block px-3 py-1 bg-rose-50 text-rose-600 font-black text-xs sm:text-sm rounded-xl mb-2.5">٢٠٢٢ - ٢٠٢٤</div>
+                                <h3 class="text-base sm:text-xl font-black text-slate-900 mb-1 leading-snug">مصممة كرافيك</h3>
+                                <div class="text-xs sm:text-sm text-rose-600 font-bold mb-4">العتبة الحسينية المقدسة - قسم رعاية الطفولة (مركز الحوراء زينب)</div>
+                                <ul class="text-xs sm:text-sm text-slate-700 font-semibold leading-relaxed space-y-2.5 list-disc pr-4 border-t border-slate-100 pt-3">
                                     <li>تطوير الهوية البصرية للبرامج والأنشطة الثقافية وتصميم منشورات وكتب الشهداء.</li>
                                     <li>إعداد وتجهيز المواد الدعائية والبصرية المطبوعة والرقمية للفعاليات والمهرجانات.</li>
                                 </ul>

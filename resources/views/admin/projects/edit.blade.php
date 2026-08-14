@@ -41,7 +41,7 @@
     <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden" onclick="closeSidebar()"></div>
 
     {{-- =================== TOP NAVBAR =================== --}}
-    <header class="fixed top-0 z-30 w-full bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+    <header class="fixed top-0 z-50 w-full bg-white border-b border-slate-200 shadow-xs">
         <div class="px-4 py-3 lg:px-6">
             <div class="flex items-center justify-between">
 

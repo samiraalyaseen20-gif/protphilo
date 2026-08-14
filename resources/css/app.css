@@ -231,9 +231,9 @@ a, button, [role="button"] {
     transform: translateZ(25px);
 }
 
-/* Violet bottom wave panel */
+/* Pink bottom wave panel */
 .hero-bottom-block {
-    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    background: linear-gradient(135deg, #ff3366 0%, #e11d48 100%);
     border-radius: 40px;
     color: white;
 }

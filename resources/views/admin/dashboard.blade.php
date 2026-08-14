@@ -13,7 +13,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 
     <style>
-        * { font-family: 'Cairo', sans-serif !important; }
+        body, input, textarea, select, button { font-family: 'Cairo', sans-serif; }
+        .material-symbols-outlined { font-family: 'Material Symbols Outlined' !important; }
         
         .brand-gradient {
             background: linear-gradient(135deg, #ff3366 0%, #e11d48 100%);

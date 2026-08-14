@@ -16,7 +16,10 @@
         body {
             font-family: 'Cairo', 'Outfit', sans-serif;
             background-color: #ffffff;
-            color: #0f1        .mutmiz-hero-bg {
+            color: #0f172a;
+        }
+
+        .mutmiz-hero-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -58,83 +61,87 @@
     <main class="relative pt-20 sm:pt-28">
 
         <!-- Hero Section -->
-        <section class="min-h-fit lg:min-h-screen flex items-center overflow-visible relative pt-16 sm:pt-20 lg:pt-0 pb-16">
-            <div class="max-w-7xl mx-auto px-6 w-full space-y-16">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section class="min-h-fit lg:min-h-[85vh] flex items-center overflow-visible relative pt-12 sm:pt-16 pb-16">
+            <div class="max-w-5xl mx-auto px-6 w-full space-y-10 text-center">
+                
+                <!-- Main Header -->
+                <div class="space-y-5 max-w-3xl mx-auto">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/15 shadow-xs">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        المهندسة سميرة علي ياسين ال ياسين
+                    </span>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight text-on-background font-display tracking-tight">
+                        تصميم وتطوير <br class="hidden sm:inline">
+                        <span class="text-primary glow-pink">الأنظمة الطبية والإدارية</span>
+                    </h1>
                     
-                    <!-- Right Column: Text (LTR left, RTL right) -->
-                    <div class="lg:col-span-5 space-y-6 sm:space-y-8 text-center lg:text-right">
-                        
-                        <!-- Main Header -->
-                        <h1 class="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight text-on-background font-display tracking-tight">
-                            أصمم وأطور <br>
-                            <span class="text-primary glow-pink">الأنظمة الطبية الإدارية</span>
-                        </h1>
-                        
-                        <!-- Description -->
-                        <p class="text-sm sm:text-base lg:text-lg text-on-surface leading-relaxed max-w-xl mx-auto lg:mr-0">
-                            المهندسة سميرة علي ياسين ال ياسين. أقدم حلولاً برمجية متكاملة تركز على أتمتة الأنظمة الإدارية، والأرشفة الإلكترونية الشاملة للبيانات الطبية، وتطوير قواعد البيانات والبرمجيات الإحصائية لتقليل الأخطاء ودعم اتخاذ القرار.
-                        </p>
-
-                        <!-- 3. Subgrid for Floating Info cards: Academic Certificate & Software Skills -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-[700px] mt-4">
-                            <!-- Academic Certificate Card -->
-                            <div class="mutmiz-card p-5 rounded-2xl shadow-md border border-primary/10 space-y-4 text-right">
-                                <div class="flex items-center gap-3">
-                                    <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center glow-pink">
-                                        <span class="material-symbols-outlined text-lg">school</span>
-                                    </span>
-                                    <h3 class="text-xs font-black text-on-background">الشهادة الأكاديمية</h3>
-                                </div>
-                                <div class="space-y-1">
-                                    <div class="text-[11px] font-bold text-on-surface">{{ $resumeSettings->degree ?? 'بكلوريوس هندسة أجهزة طبية' }}</div>
-                                    <div class="text-[10px] text-on-surface/80">{{ $resumeSettings->university ?? 'كلية الحسين الجامعة' }}</div>
-                                    <div class="text-[9px] font-bold text-primary">سنة التخرج: {{ $resumeSettings->graduation_year ?? '٢٠٢١ - ٢٠٢٢ م' }}</div>
-                                </div>
-                                <div class="pt-2 border-t border-primary/5">
-                                    <div class="text-[9px] font-bold text-on-surface/60 mb-1">اللغات:</div>
-                                    <div class="flex flex-wrap gap-1.5">
-                                        @if(isset($resumeSettings) && !empty($resumeSettings->languages))
-                                            @foreach($resumeSettings->languages_list as $langIdx => $lang)
-                                                @php
-                                                    $badgeClass = $langIdx % 2 === 0 ? 'bg-[#fdf0f4] border-primary/5 text-primary' : 'bg-[#fdf0f4] border-secondary/5 text-secondary';
-                                                @endphp
-                                                <span class="px-2 py-0.5 rounded-full {{ $badgeClass }} border text-[9px] font-bold">{{ $lang }}</span>
-                                            @endforeach
-                                        @else
-                                            <span class="px-2 py-0.5 rounded-full bg-[#fdf0f4] border border-primary/5 text-[9px] font-bold text-primary">العربية (اللغة الأم)</span>
-                                            <span class="px-2 py-0.5 rounded-full bg-[#fdf0f4] border border-secondary/5 text-[9px] font-bold text-secondary">الإنجليزية (مستوى متقدم)</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Software Skills Card -->
-                            <div class="mutmiz-card p-5 rounded-2xl shadow-md border border-primary/10 space-y-4 text-right">
-                                <div class="flex items-center gap-3">
-                                    <span class="w-9 h-9 rounded-full bg-secondary/10 text-secondary flex items-center justify-center glow-pink">
-                                        <span class="material-symbols-outlined text-lg">terminal</span>
-                                    </span>
-                                    <h3 class="text-xs font-black text-on-background">المهارات البرمجية</h3>
-                                </div>
-                                <ul class="text-[10px] text-on-surface leading-relaxed space-y-1.5 list-disc pr-4">
-                                    @if(isset($resumeSettings) && !empty($resumeSettings->skills))
-                                        @foreach($resumeSettings->skills_list as $skill)
-                                            <li>{{ $skill }}</li>
-                                        @endforeach
-                                    @else
-                                        <li>تطوير وبرمجة الأنظمة (HTML, CSS, C#)</li>
-                                        <li>إدارة قواعد البيانات الطبية بدقة عالية</li>
-                                        <li>توظيف تقنيات الذكاء الاصطناعي في الأرشفة</li>
-                                        <li>إجادة كاملة لبرامج MS Office (Word, Excel, PPT)</li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
+                    <p class="text-sm sm:text-base lg:text-lg text-on-surface leading-relaxed max-w-2xl mx-auto">
+                        حلول برمجية متكاملة تركز على أتمتة الأنظمة الإدارية، والأرشفة الإلكترونية الشاملة للبيانات الطبية، وتطوير قواعد البيانات والبرمجيات الإحصائية لتقليل الأخطاء ودعم اتخاذ القرار.
+                    </p>
                 </div>
 
+                <!-- Floating Info cards: Academic Certificate & Software Skills -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-3xl mx-auto pt-2">
+                    <!-- Academic Certificate Card -->
+                    <div class="mutmiz-card p-6 rounded-3xl shadow-md border border-primary/10 space-y-4 text-right">
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center glow-pink shrink-0">
+                                <span class="material-symbols-outlined text-xl">school</span>
+                            </span>
+                            <div>
+                                <h3 class="text-xs font-black text-on-background">الشهادة الأكاديمية</h3>
+                                <p class="text-[10px] text-slate-400 font-semibold">المؤهلات العلمية واللغات</p>
+                            </div>
+                        </div>
+                        <div class="space-y-1 bg-slate-50/70 p-3 rounded-xl border border-slate-100">
+                            <div class="text-xs font-bold text-on-surface">{{ $resumeSettings->degree ?? 'بكلوريوس هندسة أجهزة طبية' }}</div>
+                            <div class="text-[11px] text-on-surface/80 font-semibold">{{ $resumeSettings->university ?? 'كلية الحسين الجامعة' }}</div>
+                            <div class="text-[10px] font-bold text-primary">سنة التخرج: {{ $resumeSettings->graduation_year ?? '٢٠٢١ - ٢٠٢٢ م' }}</div>
+                        </div>
+                        <div class="pt-1">
+                            <div class="text-[10px] font-bold text-on-surface/60 mb-1.5">اللغات المكتسبة:</div>
+                            <div class="flex flex-wrap gap-1.5">
+                                @if(isset($resumeSettings) && !empty($resumeSettings->languages))
+                                    @foreach($resumeSettings->languages_list as $langIdx => $lang)
+                                        @php
+                                            $badgeClass = $langIdx % 2 === 0 ? 'bg-rose-50 border-rose-200 text-rose-600' : 'bg-slate-100 border-slate-200 text-slate-700';
+                                        @endphp
+                                        <span class="px-2.5 py-1 rounded-xl {{ $badgeClass }} border text-[10px] font-bold">{{ $lang }}</span>
+                                    @endforeach
+                                @else
+                                    <span class="px-2.5 py-1 rounded-xl bg-rose-50 border border-rose-200 text-[10px] font-bold text-rose-600">العربية (اللغة الأم)</span>
+                                    <span class="px-2.5 py-1 rounded-xl bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-700">الإنجليزية (مستوى متقدم)</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Software Skills Card -->
+                    <div class="mutmiz-card p-6 rounded-3xl shadow-md border border-primary/10 space-y-4 text-right">
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center glow-pink shrink-0">
+                                <span class="material-symbols-outlined text-xl">terminal</span>
+                            </span>
+                            <div>
+                                <h3 class="text-xs font-black text-on-background">المهارات البرمجية</h3>
+                                <p class="text-[10px] text-slate-400 font-semibold">أدوات التطوير وقواعد البيانات</p>
+                            </div>
+                        </div>
+                        <ul class="text-xs text-on-surface leading-relaxed space-y-2 list-disc pr-4 bg-slate-50/70 p-3.5 rounded-xl border border-slate-100">
+                            @if(isset($resumeSettings) && !empty($resumeSettings->skills))
+                                @foreach($resumeSettings->skills_list as $skill)
+                                    <li>{{ $skill }}</li>
+                                @endforeach
+                            @else
+                                <li>تطوير وبرمجة الأنظمة (HTML, CSS, C#)</li>
+                                <li>إدارة قواعد البيانات الطبية بدقة عالية</li>
+                                <li>توظيف تقنيات الذكاء الاصطناعي في الأرشفة</li>
+                                <li>إجادة كاملة لبرامج MS Office (Word, Excel, PPT)</li>
+                            @endif
+                        </ul>
+                    </div>
+                </div>
 
             </div>
         </section>

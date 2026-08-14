@@ -48,11 +48,16 @@
     <div class="mutmiz-hero-bg"></div>
 
     <!-- Navigation Bar -->
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-center items-center">
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex justify-between items-center">
             <div class="text-xl sm:text-2xl font-black text-primary font-display tracking-tight flex items-center gap-2">
                 <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-secondary glow-pink"></span>
-                سميرة علي ياسين
+                المهندسة سميرة علي ياسين
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#experience" class="text-xs sm:text-sm font-bold text-slate-700 hover:text-primary transition-colors hidden sm:inline">المسيرة المهنية</a>
+                <a href="#projects" class="text-xs sm:text-sm font-bold text-slate-700 hover:text-primary transition-colors hidden sm:inline">المشاريع</a>
+                <a href="#contact" class="text-xs sm:text-sm font-bold text-slate-700 hover:text-primary transition-colors">الاتصال</a>
             </div>
         </div>
     </nav>

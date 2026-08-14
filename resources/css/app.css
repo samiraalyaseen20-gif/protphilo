@@ -43,6 +43,14 @@ a, button, [role="button"] {
     border-radius: 10px;
 }
 
+@utility glass-nav {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 51, 102, 0.1);
+    box-shadow: 0 4px 20px -2px rgba(255, 51, 102, 0.04);
+}
+
 /* Mutmiz specific styling utilities */
 @utility mutmiz-card {
     background: #ffffff;

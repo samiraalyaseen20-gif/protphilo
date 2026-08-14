@@ -119,13 +119,13 @@
     <div class="mutmiz-hero-bg"></div>
 
     <!-- Navigation Bar -->
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex justify-between items-center">
             <a href="/" class="text-xl sm:text-2xl font-black text-primary font-display tracking-tight flex items-center gap-1 sm:gap-2">
                 <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-secondary glow-pink"></span>
-                سميرة علي ياسين
+                المهندسة سميرة علي ياسين
             </a>
-            <a href="/#projects" class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-on-surface hover:text-primary transition-all hover:-translate-x-1 duration-300">
+            <a href="/#projects" class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-700 hover:text-primary transition-all hover:-translate-x-1 duration-300 bg-slate-100 px-3.5 py-1.5 rounded-xl">
                 <span class="material-symbols-outlined text-sm sm:text-base">arrow_right_alt</span>
                 العودة لمعرض الأعمال
             </a>

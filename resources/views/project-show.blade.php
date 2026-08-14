@@ -196,14 +196,12 @@
                         <div class="desktop-mockup-container mockup-zoom-parent cursor-pointer w-full"
                              onclick="openLightbox('{{ asset($project->image) }}', '{{ addslashes($project->title) }}')">
                             <!-- Mockup header -->
-                            <div class="desktop-header flex justify-between items-center bg-[#fdfcff] px-4 py-2 border-b border-primary/5">
+                            <div class="desktop-header flex items-center bg-[#fdfcff] px-4 py-2 border-b border-primary/5">
                                 <div class="flex items-center gap-1.5">
                                     <span class="window-dot bg-red-400"></span>
                                     <span class="window-dot bg-yellow-400"></span>
                                     <span class="window-dot bg-green-400"></span>
                                 </div>
-                                <span class="text-[10px] text-on-surface/50 font-mono">SamiraOS - {{ Str::slug($project->title) }}.exe</span>
-                                <div class="w-12"></div>
                             </div>
                             <!-- Mockup body containing image -->
                             <div class="desktop-body bg-slate-50 flex items-center justify-center p-1">
